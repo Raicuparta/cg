@@ -6,7 +6,10 @@ void myDisplay(void) {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	// calcada
+	//Cada um destes objectos esta para ser implementado na sua propria classe
+	//de acordo com o diagrama uml no pdf da primeira avaliacao
+
+	// RoadSide
 	glColor3f(0.4f, 0.1f, 0.7f);
 	glPushMatrix();
 		glTranslatef(0.f, -6.f, 0.f);
@@ -16,7 +19,7 @@ void myDisplay(void) {
 		glutSolidCube(1);
 	glPopMatrix();
 
-	// estrada
+	// Road
 	glColor3f(0.1f, 0.1f, 0.1f);
 		glPushMatrix();
 		glTranslatef(0.f, -3.f, 0.f);
@@ -24,7 +27,7 @@ void myDisplay(void) {
 		glutSolidCube(1);
 	glPopMatrix();
 
-	// estrada
+	// River
 	glColor3f(0.1f, 0.3f, 0.9f);
 		glPushMatrix();
 		glTranslatef(0.f, 3.f, 0.f);
@@ -32,7 +35,7 @@ void myDisplay(void) {
 		glutSolidCube(1);
 	glPopMatrix();
 
-	// outro lado do rio
+	// RiverSide
 	glColor3f(0.3f, 0.7f, 0.1f);
 		glPushMatrix();
 		glTranslatef(0.f, 6.5f, 0.f);

@@ -80,10 +80,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\CG\CG Proj\CG Proj\Square.cpp" />
+    <ClCompile Include="Bus.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Car.cpp" />
+    <ClCompile Include="DynamicObject.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Frog.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="River.cpp" />
+    <ClCompile Include="RiverSide.cpp" />
+    <ClCompile Include="Road.cpp" />
+    <ClCompile Include="RoadSide.cpp" />
+    <ClCompile Include="StaticObject.cpp" />
+    <ClCompile Include="TimberLog.cpp" />
+    <ClCompile Include="Turtle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Square.h" />
+    <ClInclude Include="Bus.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Car.h" />
+    <ClInclude Include="DynamicObject.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Frog.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="River.h" />
+    <ClInclude Include="RiverSide.h" />
+    <ClInclude Include="Road.h" />
+    <ClInclude Include="RoadSide.h" />
+    <ClInclude Include="StaticObject.h" />
+    <ClInclude Include="TimberLog.h" />
+    <ClInclude Include="Turtle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
