@@ -1,5 +1,6 @@
 #include "GameManager.h"
 #include "GameObject.h"
+#include "River.h"
 
 GameObject* _game_objects; //nao sei se era suposto isto tar no header mas nao tava a funcionar la
 
@@ -15,6 +16,8 @@ GameManager::~GameManager() {
 void display() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	River r;
 
 	//Cada um destes objectos esta para ser implementado na sua propria classe
 	//de acordo com o diagrama uml no pdf da primeira avaliacao
@@ -38,12 +41,16 @@ void display() {
 	glPopMatrix();
 
 	// River
+	/*
 	glColor3f(0.1f, 0.3f, 0.9f);
 	glPushMatrix();
 	glTranslatef(0.f, 3.f, 0.f);
 	glScalef(15.f, 5.f, 1.f);
 	glutSolidCube(1);
 	glPopMatrix();
+	*/
+
+	r.draw();
 
 	// RiverSide
 	glColor3f(0.3f, 0.7f, 0.1f);
