@@ -6,5 +6,6 @@ class Road :
 public:
 	Road();
 	~Road();
+	void draw();
 };
 

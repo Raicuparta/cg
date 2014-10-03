@@ -6,5 +6,6 @@ class Frog :
 public:
 	Frog();
 	~Frog();
+	void draw();
 };
 

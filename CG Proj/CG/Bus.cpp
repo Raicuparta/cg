@@ -9,3 +9,6 @@ Bus::Bus()
 Bus::~Bus()
 {
 }
+
+void Bus::draw() {
+}

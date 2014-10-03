@@ -6,5 +6,6 @@ class RiverSide :
 public:
 	RiverSide();
 	~RiverSide();
+	void draw();
 };
 

@@ -1,8 +1,15 @@
+#include <vector>
+#include <stdlib.h>
+#include <windows.h>
+#include <GL/glut.h>
 #include "GameManager.h"
 #include "GameObject.h"
 #include "River.h"
+#include "RiverSide.h"
 
-GameObject* _game_objects; //nao sei se era suposto isto tar no header mas nao tava a funcionar la
+
+
+std::vector<GameObject*> _game_objects; //nao sei se era suposto isto tar no header mas nao tava a funcionar la
 
 GameManager::GameManager() {
 
@@ -17,7 +24,10 @@ void display() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	River r;
+	for (GameObject* obj : _game_objects)
+	{
+		obj->draw();
+	}
 
 	//Cada um destes objectos esta para ser implementado na sua propria classe
 	//de acordo com o diagrama uml no pdf da primeira avaliacao
@@ -49,16 +59,16 @@ void display() {
 	glutSolidCube(1);
 	glPopMatrix();
 	*/
-
-	r.draw();
-
+	
 	// RiverSide
+	/*
 	glColor3f(0.3f, 0.7f, 0.1f);
 	glPushMatrix();
 	glTranslatef(0.f, 6.5f, 0.f);
 	glScalef(15.f, 2.f, 1.f);
 	glutSolidCube(1);
 	glPopMatrix();
+	*/
 
 	glFlush();
 }
@@ -108,7 +118,7 @@ void init() {
 
 }
 
-void main(int argc, char ** argv) {
+int main(int argc, char ** argv) {
 
 	glutInit(&argc, argv);
 
@@ -117,10 +127,17 @@ void main(int argc, char ** argv) {
 	glutInitWindowPosition(-1, -1);
 	glutCreateWindow("janela");
 
+	River* river = new River();
+	RiverSide* riverside = new RiverSide();
+	_game_objects.push_back(river);
+	_game_objects.push_back(riverside);
+
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 
 	glutMainLoop();
+
+	return 0;
 
 }
 

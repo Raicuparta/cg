@@ -6,5 +6,6 @@ class DynamicObject :
 public:
 	DynamicObject();
 	~DynamicObject();
+	virtual void draw();
 };
 

@@ -9,3 +9,6 @@ RoadSide::RoadSide()
 RoadSide::~RoadSide()
 {
 }
+
+void RoadSide::draw() {
+}

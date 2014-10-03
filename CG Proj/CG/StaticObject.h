@@ -6,5 +6,8 @@ class StaticObject :
 public:
 	StaticObject();
 	~StaticObject();
+	virtual void draw(); //provavelmente e preciso
 };
+
+
 

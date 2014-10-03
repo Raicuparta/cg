@@ -9,3 +9,6 @@ Turtle::Turtle()
 Turtle::~Turtle()
 {
 }
+
+void Turtle::draw() {
+}

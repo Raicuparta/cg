@@ -6,5 +6,6 @@ class Car :
 public:
 	Car();
 	~Car();
+	void draw();
 };
 

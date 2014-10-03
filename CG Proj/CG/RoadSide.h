@@ -6,5 +6,6 @@ class RoadSide :
 public:
 	RoadSide();
 	~RoadSide();
+	void draw();
 };
 

@@ -6,5 +6,6 @@ class Bus :
 public:
 	Bus();
 	~Bus();
+	void draw();
 };
 

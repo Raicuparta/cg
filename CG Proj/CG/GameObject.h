@@ -6,5 +6,6 @@ class GameObject :
 public:
 	GameObject();
 	~GameObject();
+	virtual void draw();
 };
 

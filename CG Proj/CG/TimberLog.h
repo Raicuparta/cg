@@ -6,5 +6,6 @@ class TimberLog :
 public:
 	TimberLog();
 	~TimberLog();
+	void draw();
 };
 

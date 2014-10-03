@@ -1,13 +1,26 @@
-﻿Build started 02/10/2014 20:45:31.
-     1>Project "C:\Users\Bia\Desktop\CG GitHub\cg\CG Proj\CG\CG.vcxproj" on node 2 (Build target(s)).
+﻿Build started 03-10-2014 13:19:03.
+     1>Project "z:\Desktop\CG\CG Proj\CG\CG.vcxproj" on node 2 (Rebuild target(s)).
+       Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\glut\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameManager.cpp River.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\glut\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Bus.cpp Camera.cpp Car.cpp DynamicObject.cpp Entity.cpp Frog.cpp GameManager.cpp GameObject.cpp River.cpp RiverSide.cpp Road.cpp RoadSide.cpp StaticObject.cpp TimberLog.cpp Turtle.cpp
+         Turtle.cpp
+         TimberLog.cpp
+         StaticObject.cpp
+         RoadSide.cpp
+         Road.cpp
+         RiverSide.cpp
          River.cpp
-         Generating Code...
-         Skipping... (no relevant changes detected)
+         GameObject.cpp
          GameManager.cpp
+         Frog.cpp
+         Entity.cpp
+         DynamicObject.cpp
+         Car.cpp
+         Camera.cpp
+         Bus.cpp
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Bia\Desktop\CG GitHub\cg\CG Proj\Debug\CG.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\..\glut\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Bia\Desktop\CG GitHub\cg\CG Proj\Debug\CG.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Bia\Desktop\CG GitHub\cg\CG Proj\Debug\CG.lib" /MACHINE:X86 Debug\Bus.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"z:\Desktop\CG\CG Proj\Debug\CG.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\..\glut\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"z:\Desktop\CG\CG Proj\Debug\CG.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"z:\Desktop\CG\CG Proj\Debug\CG.lib" /MACHINE:X86 Debug\Bus.obj
          Debug\Camera.obj
          Debug\Car.obj
          Debug\DynamicObject.obj
@@ -22,10 +35,9 @@
          Debug\StaticObject.obj
          Debug\TimberLog.obj
          Debug\Turtle.obj
-     1>GameManager.obj : error LNK2019: unresolved external symbol "public: void __thiscall River::draw(void)" (?draw@River@@QAEXXZ) referenced in function "void __cdecl display(void)" (?display@@YAXXZ)
-     1>C:\Users\Bia\Desktop\CG GitHub\cg\CG Proj\Debug\CG.exe : fatal error LNK1120: 1 unresolved externals
-     1>Done Building Project "C:\Users\Bia\Desktop\CG GitHub\cg\CG Proj\CG\CG.vcxproj" (Build target(s)) -- FAILED.
+         CG.vcxproj -> z:\Desktop\CG\CG Proj\Debug\CG.exe
+     1>Done Building Project "z:\Desktop\CG\CG Proj\CG\CG.vcxproj" (Rebuild target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:02.93
+Time Elapsed 00:00:03.30

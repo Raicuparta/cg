@@ -9,3 +9,6 @@ TimberLog::TimberLog()
 TimberLog::~TimberLog()
 {
 }
+
+void TimberLog::draw() {
+}

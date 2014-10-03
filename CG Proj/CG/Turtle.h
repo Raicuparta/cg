@@ -6,5 +6,6 @@ class Turtle :
 public:
 	Turtle();
 	~Turtle();
+	void draw();
 };
 

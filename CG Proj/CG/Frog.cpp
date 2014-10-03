@@ -9,3 +9,6 @@ Frog::Frog()
 Frog::~Frog()
 {
 }
+
+void Frog::draw() {
+}

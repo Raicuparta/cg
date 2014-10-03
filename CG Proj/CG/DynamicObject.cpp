@@ -9,3 +9,7 @@ DynamicObject::DynamicObject()
 DynamicObject::~DynamicObject()
 {
 }
+
+void DynamicObject::draw() {
+}
+

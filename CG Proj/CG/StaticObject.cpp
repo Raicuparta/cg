@@ -9,3 +9,6 @@ StaticObject::StaticObject()
 StaticObject::~StaticObject()
 {
 }
+
+void StaticObject::draw() {
+}
