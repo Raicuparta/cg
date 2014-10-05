@@ -4,7 +4,7 @@ class Road :
 	public StaticObject
 {
 public:
-	Road();
+	Road(std::vector<GameObject*>& game_objects);
 	~Road();
 	void draw();
 };

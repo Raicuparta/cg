@@ -1,10 +1,7 @@
 #include "Turtle.h"
 
-
-Turtle::Turtle()
-{
+Turtle::Turtle(std::vector<GameObject*>& game_objects) : DynamicObject(game_objects) {
 }
-
 
 Turtle::~Turtle()
 {

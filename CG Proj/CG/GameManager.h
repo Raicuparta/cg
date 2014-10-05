@@ -1,4 +1,10 @@
+#include <vector>
 #include <GL/glut.h>
+#include "GameObject.h"
+#include "River.h"
+#include "RiverSide.h"
+#include "Road.h"
+#include "RoadSide.h"
 #pragma once
 class GameManager
 {

@@ -1,11 +1,7 @@
 #include "RiverSide.h"
-#include <GL/glut.h>
 
-
-RiverSide::RiverSide()
-{
+RiverSide::RiverSide(std::vector<GameObject*>& game_objects) : StaticObject(game_objects) {
 }
-
 
 RiverSide::~RiverSide()
 {

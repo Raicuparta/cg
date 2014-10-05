@@ -1,10 +1,7 @@
 #include "DynamicObject.h"
 
-
-DynamicObject::DynamicObject()
-{
+DynamicObject::DynamicObject(std::vector<GameObject*>& game_objects) : GameObject(game_objects) {
 }
-
 
 DynamicObject::~DynamicObject()
 {

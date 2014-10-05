@@ -4,7 +4,7 @@ class Frog :
 	public DynamicObject
 {
 public:
-	Frog();
+	Frog(std::vector<GameObject*>& game_objects);
 	~Frog();
 	void draw();
 };

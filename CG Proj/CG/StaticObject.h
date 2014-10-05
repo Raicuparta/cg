@@ -4,9 +4,9 @@ class StaticObject :
 	public GameObject
 {
 public:
-	StaticObject();
+	StaticObject(std::vector<GameObject*>& game_objects);
 	~StaticObject();
-	virtual void draw(); //provavelmente e preciso
+	virtual void draw();
 };
 
 

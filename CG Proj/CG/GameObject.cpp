@@ -1,8 +1,8 @@
 #include "GameObject.h"
 
-
-GameObject::GameObject()
+GameObject::GameObject(std::vector<GameObject*>& game_objects)
 {
+	game_objects.push_back(this);
 }
 
 

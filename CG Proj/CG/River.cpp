@@ -1,12 +1,7 @@
 #include "River.h"
-#include <windows.h>
-#include <GL/glut.h>
 
-
-River::River()
-{
+River::River(std::vector<GameObject*>& game_objects) : StaticObject(game_objects) {
 }
-
 
 River::~River()
 {

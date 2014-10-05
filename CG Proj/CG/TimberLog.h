@@ -4,7 +4,7 @@ class TimberLog :
 	public DynamicObject
 {
 public:
-	TimberLog();
+	TimberLog(std::vector<GameObject*>& game_objects);
 	~TimberLog();
 	void draw();
 };

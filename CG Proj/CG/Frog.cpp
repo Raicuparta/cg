@@ -1,10 +1,7 @@
 #include "Frog.h"
 
-
-Frog::Frog()
-{
+Frog::Frog(std::vector<GameObject*>& game_objects) : DynamicObject(game_objects) {
 }
-
 
 Frog::~Frog()
 {

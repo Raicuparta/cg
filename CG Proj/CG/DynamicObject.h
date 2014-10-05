@@ -4,7 +4,7 @@ class DynamicObject :
 	public GameObject
 {
 public:
-	DynamicObject();
+	DynamicObject(std::vector<GameObject*>& game_objects);
 	~DynamicObject();
 	virtual void draw();
 };

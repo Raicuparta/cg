@@ -1,10 +1,7 @@
 #include "StaticObject.h"
 
-
-StaticObject::StaticObject()
-{
+StaticObject::StaticObject(std::vector<GameObject*>& game_objects) : GameObject(game_objects) {
 }
-
 
 StaticObject::~StaticObject()
 {
