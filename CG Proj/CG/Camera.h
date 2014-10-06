@@ -4,7 +4,11 @@ class Camera :
 	public Entity
 {
 public:
-	Camera();
+	Camera(double near, double far);
 	~Camera();
+	void update();
+	void computeProjectionMatrix();
+	void computeVisualizationMatrix();
+
 };
 
