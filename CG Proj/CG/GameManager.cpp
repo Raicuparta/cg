@@ -83,10 +83,6 @@ int main(int argc, char ** argv) {
 	Road* road = new Road(_game_objects);
 	RoadSide* road_side = new RoadSide(_game_objects);
 
-	std::cout << "3. size: " << _game_objects.size() << '\n';
-
-	Vector3* vector = new Vector3(5, 2, 3);
-
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 
