@@ -47,16 +47,22 @@ Vector3 Vector3::operator*(double num) {
 	double newY = _y*num;
 	double newZ = _z*num;
 
-	Vector3* res = new Vector3(newX, newY, newZ);
-
-	return res;
+	return Vector3(newX, newY, newZ);
 
 }
 
 Vector3 Vector3::operator+(const Vector3& vec) {
+	double newX = _x + vec._x;
+	double newY = _y + vec._y;
+	double newZ = _z + vec._z;
 
+	return Vector3(newX, newY, newZ);
 }
 
 Vector3 Vector3::operator-(const Vector3& vec) {
+	double newX = _x - vec._x;
+	double newY = _y - vec._y;
+	double newZ = _z - vec._z;
 
+	return Vector3(newX, newY, newZ);
 }
