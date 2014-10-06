@@ -1,6 +1,8 @@
 #include "GameManager.h"
 
 std::vector<GameObject*> _game_objects;
+Frog* frog = NULL;
+Car* car1 = NULL;
 
 GameManager::GameManager() {
 
@@ -49,14 +51,27 @@ void reshape(GLsizei width, GLsizei height) {
 
 void keyboard(unsigned char key, int x, int y)
 {
+	Vector3* temppos = NULL;
 	switch(key) {
 		case 'q': std::cout << "'Q' pressed" << std::endl; // Q - up
+			temppos = frog->getPosition();
+			if (temppos->getY() < 7)
+				temppos->set(temppos->getX(), temppos->getY()+1, temppos->getZ());
 			break;
 		case 'a': std::cout << "'A' pressed" << std::endl; // A - down
+			temppos = frog->getPosition();
+			if (temppos->getY() > -7)
+				temppos->set(temppos->getX(), temppos->getY() - 1, temppos->getZ());
 			break;
 		case 'o': std::cout << "'O' pressed" << std::endl; // O - left
+			temppos = frog->getPosition();
+			if (temppos->getX() > -7)
+				temppos->set(temppos->getX()-1, temppos->getY(), temppos->getZ());
 			break;
 		case 'p': std::cout << "'P' pressed" << std::endl; // P - right
+			temppos = frog->getPosition();
+			if (temppos->getX() < 7)
+				temppos->set(temppos->getX()+1, temppos->getY(), temppos->getZ());
 			break;
 		default: break;
 	}
@@ -99,7 +114,8 @@ int main(int argc, char ** argv) {
 	RiverSide* river_side = new RiverSide(_game_objects);
 	Road* road = new Road(_game_objects);
 	RoadSide* road_side = new RoadSide(_game_objects);
-	Frog* frog = new Frog(_game_objects);
+	frog = new Frog(_game_objects);
+	car1 = new Car(_game_objects);
 
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
