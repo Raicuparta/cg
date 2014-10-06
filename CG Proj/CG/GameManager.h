@@ -12,9 +12,10 @@ class GameManager {
 public:
 	GameManager();
 	~GameManager();
-	void display();
-	void reshape(GLsizei width, GLsizei height);
-	void keyPressed();
+	//void display();
+	//void reshape(GLsizei width, GLsizei height);
+	//void keyboard(unsigned char key, int x, int y);
+	//void keyPressed();
 	void onTimer();
 	void idle();
 	void update();
