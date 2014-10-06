@@ -1,10 +1,5 @@
 #include "GameManager.h"
 
-#include "Vector3.h"
-#include <iostream>
-
-//using namespace std;
-
 std::vector<GameObject*> _game_objects;
 
 GameManager::GameManager() {
@@ -23,7 +18,6 @@ void display() {
 	{
 		obj->draw();
 	}
-
 	glFlush();
 }
 
@@ -68,6 +62,8 @@ void keyboard(unsigned char key, int x, int y)
 	}
 
 	glutPostRedisplay();
+
+	
 }
 
 void keyPressed() {
@@ -97,16 +93,13 @@ int main(int argc, char ** argv) {
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
 	glutInitWindowSize(1200, 650);
 	glutInitWindowPosition(-1, -1);
-	glutCreateWindow("janela");
+	glutCreateWindow("Super Frogger 64");
 
 	River* river = new River(_game_objects);
 	RiverSide* river_side = new RiverSide(_game_objects);
 	Road* road = new Road(_game_objects);
 	RoadSide* road_side = new RoadSide(_game_objects);
-
-	std::cout << "3. size: " << _game_objects.size() << '\n';
-
-	Vector3* vector = new Vector3(5, 2, 3);
+	Frog* frog = new Frog(_game_objects);
 
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
@@ -121,4 +114,3 @@ int main(int argc, char ** argv) {
 	return 0;
 
 }
-

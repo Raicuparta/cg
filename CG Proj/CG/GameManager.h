@@ -6,6 +6,7 @@
 #include "RiverSide.h"
 #include "Road.h"
 #include "RoadSide.h"
+#include "Frog.h"
 #pragma once
 
 class GameManager {
