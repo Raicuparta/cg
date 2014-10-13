@@ -56,7 +56,9 @@ Vector3 Vector3::operator+(const Vector3& vec) {
 	double newY = _y + vec._y;
 	double newZ = _z + vec._z;
 
-	return Vector3(newX, newY, newZ);
+	Vector3 newVector(newX, newY, newZ);
+
+	return newVector;
 }
 
 Vector3 Vector3::operator-(const Vector3& vec) {

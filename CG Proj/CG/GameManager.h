@@ -8,18 +8,21 @@
 #include "RoadSide.h"
 #include "Frog.h"
 #include "Car.h"
+#include "TimberLog.h"
 #pragma once
 
 class GameManager {
+	int _current_time;
+	int _previous_time;
 public:
-	GameManager(int value);
+	GameManager();
 	~GameManager();
-	//void display();
-	//void reshape(GLsizei width, GLsizei height);
-	//void keyboard(unsigned char key, int x, int y);
-	//void keyPressed();
-	void onTimer();
+	void display();
+	void reshape(GLsizei width, GLsizei height);
+	void keyPressed(unsigned char key, int x, int y);
+	void keyReleased(unsigned char key, int x, int y);
+	void onTimer(int value);
 	void idle();
-	void update();
+	void update(double dt);
 	void init();
 };

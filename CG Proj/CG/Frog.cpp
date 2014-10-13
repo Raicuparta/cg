@@ -1,10 +1,11 @@
 #include "Frog.h"
 #include <iostream>
 
-#define SPEED 0.1
+#define SPEED 0.01
 
 Frog::Frog() : DynamicObject() {
 	_position = new Vector3(0, -7, 0);
+	_speed = *(new Vector3(0, 0, 0));
 }
 
 Frog::~Frog()
@@ -12,7 +13,7 @@ Frog::~Frog()
 }
 
 void Frog::draw() {
-	std::cout << "x: " << _position->getX() << " y: " << _position->getY() << " z: " << _position->getZ() << std::endl;
+	//std::cout << "x: " << _position->getX() << " y: " << _position->getY() << " z: " << _position->getZ() << std::endl;
 
 	//corpo do sapo
 	glPushMatrix();
@@ -70,4 +71,11 @@ void Frog::draw() {
 
 	void  Frog::moveRight() {
 		setSpeed(getSpeed()->getX() + SPEED, getSpeed()->getY(), getSpeed()->getZ());
+	}
+
+	void Frog::update(int dt) {
+		//setPosition(getPosition()->operator+(*getSpeed()));
+		Vector3 speed = *getSpeed();
+		Vector3 position = *getPosition();
+		setPosition(speed*dt + position);
 	}

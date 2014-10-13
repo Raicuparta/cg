@@ -4,15 +4,17 @@ std::vector<GameObject*> _game_objects;
 Frog* frog = NULL;
 Car* car1 = NULL;
 
-GameManager::GameManager() {
 
+GameManager::GameManager() {
+	_current_time = 0;
+	_previous_time = 0;
 }
 
 GameManager::~GameManager() {
 
 }
 
-void display() {
+void GameManager::display() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -23,20 +25,19 @@ void display() {
 	glFlush();
 }
 
-void reshape(GLsizei width, GLsizei height) {
+void GameManager::reshape(GLsizei width, GLsizei height) {
 	// O ecra tem as dimensoes 15x15
 	// Cada unidade corresponde a um 'bloco' do jogo
 	// Por exemplo, a estrada tem uma largura de 5 unidades
-	std::cout << "reshpeeeeeeeeeeeeee" << std::endl;
 	float xmin = -7.5, xmax = 7.5, ymin = -7.5, ymax = 7.5;
 
 	float ratio = (xmax - xmin) / (ymax - ymin);
 	float aspect = (float)width / height;
 	glViewport(0, 0, width, height);
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+
 	if (ratio < aspect)
 	{
 		float delta = ((ymax - ymin) * aspect - (xmax - xmin)) / 2;
@@ -47,39 +48,52 @@ void reshape(GLsizei width, GLsizei height) {
 		float delta = ((xmax - xmin) / aspect - (ymax - ymin)) / 2;
 		gluOrtho2D(xmin, xmax, ymin - delta, ymax + delta);
 	}
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	
 }
 
-void keyPressed(unsigned char key, int x, int y)
+void GameManager::keyPressed(unsigned char key, int x, int y)
 {
 	switch(key) {
-		case 'q': std::cout << "'Q' pressed" << std::endl; // Q - up
+		case 'q': // Q - up
+		case 't':
 			frog->moveUp();
 			break;
-		case 'a': std::cout << "'A' pressed" << std::endl; // A - down
+		case 'a':// A - down
+		case 'g':
 			frog->moveDown();
 			break;
-		case 'o': std::cout << "'O' pressed" << std::endl; // O - left
+		case 'o': // O - left
+		case 'f':
 			frog->moveLeft();
 			break;
-		case 'p': std::cout << "'P' pressed" << std::endl; // P - right
+		case 'p': // P - right
+		case 'h':
 			frog->moveRight();
 			break;
 		default: break;
 	}
+	glutPostRedisplay();
 }
 
-void keyReleased(unsigned char key, int x, int y) {
+void GameManager::keyReleased(unsigned char key, int x, int y) {
 	switch(key) {
-		case 'q': std::cout << "'Q' released" << std::endl; // Q - up
+		case 'q': // Q - up
+		case 't':
 			frog->moveDown();
 			break;
-		case 'a': std::cout << "'A' released" << std::endl; // A - down
+		case 'a': // A - down
+		case 'g':
 			frog->moveUp();
 			break;
-		case 'o': std::cout << "'O' released" << std::endl; // O - left
+		case 'o': // O - left
+		case 'f':
 			frog->moveRight();
 			break;
-		case 'p': std::cout << "'P' released" << std::endl; // P - right
+		case 'p': // P - right
+		case 'h':
 			frog->moveLeft();
 			break;
 		default: break;
@@ -87,22 +101,27 @@ void keyReleased(unsigned char key, int x, int y) {
 }
 
 void GameManager::onTimer(int value) {
-	update();
+	idle();
 	glutPostRedisplay();
-}
-
-void GameManager::idle() {
 
 }
 
-void GameManager::update() {
+void GameManager::idle(){
+    _current_time = glutGet(GLUT_ELAPSED_TIME);
+    update(_current_time - _previous_time);
+    _previous_time = _current_time;
+    glutPostRedisplay();
+    
+}
 
-	frog->setPosition(frog->getPosition()->operator+(*frog->getSpeed()));
+void GameManager::update(double dt) {
+	frog->update(dt);
+	//fazer ciclo for que percorre todos os objects e faz update
+	//ou se calhar so os dynamics
 	
 }
 
 void GameManager::init() {
-	glutInit(&argc, argv);
 
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
 	glutInitWindowSize(1200, 650);
@@ -127,8 +146,8 @@ void GameManager::init() {
 	car1 = new Car();
 	_game_objects.push_back(car1);
 
-	glutDisplayFunc(display);
-	glutReshapeFunc(reshape);
+	TimberLog* _timber_log = new TimberLog();
+	_game_objects.push_back(_timber_log);
 }
 
 

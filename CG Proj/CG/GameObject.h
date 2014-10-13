@@ -8,5 +8,6 @@ public:
 	GameObject();
 	~GameObject();
 	virtual void draw();
+	void update(double dt);
 };
 

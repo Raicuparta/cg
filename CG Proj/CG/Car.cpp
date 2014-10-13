@@ -4,7 +4,7 @@
 Car::Car() : DynamicObject() {
 	int rando = rand() % 5 + 1;
 	rando *= -1;
-	_position = new Vector3(-7, rando, 0);
+	_position = new Vector3(0, rando, 0);
 }
 
 Car::~Car()
@@ -12,44 +12,37 @@ Car::~Car()
 }
 
 void Car::draw() {
-	//corpo do carro
+
 	glPushMatrix();
-	glColor3f(0.5f, 0.5f, 0.f);
 	glTranslatef(_position->getX(), _position->getY(), _position->getZ());
-	glScalef(1.0f, 0.5f, 0.5f);
-	glutSolidCube(1);
-	glPopMatrix();
 
-	//roda dianteira direita
-	glPushMatrix();
-	glColor3f(0.5f, .0f, 0.f);
-	glTranslatef(_position->getX() + 0.25, _position->getY() - 0.25, _position->getZ());
-	glScalef(0.2f, 0.2f, 0.2f);
-	glutSolidTorus(.3f, .6f, 50, 100);
-	glPopMatrix();
+		//corpo do carro
 
-	//roda dianteira esquerda
-	glPushMatrix();
-	glColor3f(0.5f, .0f, 0.f);
-	glTranslatef(_position->getX() + 0.25, _position->getY() + 0.25, _position->getZ());
-	glScalef(0.2f, 0.2f, 0.2f);
-	glutSolidTorus(.3f, .6f, 50, 100);
-	glPopMatrix();
+		glColor3f(0.5f, 0.5f, 0.f);
+		glScalef(1.0f, 0.5f, 0.5f);
+		glutSolidCube(1);
 
 
-	//roda traseira direita
-	glPushMatrix();
-	glColor3f(0.5f, .0f, 0.f);
-	glTranslatef(_position->getX() - 0.25, _position->getY() - 0.25, _position->getZ());
-	glScalef(0.2f, 0.2f, 0.2f);
-	glutSolidTorus(.3f, .6f, 50, 100);
+		//rodas esquerdas
+		glPushMatrix();
+			glColor3f(0.5f, .0f, 0.f);
+			glTranslatef(0.4, -0.5, 0);
+			glRotatef(90.f, 1, 0, 0 );
+			glutSolidTorus(.1f, .2f, 50, 100);
+			glTranslatef(-0.8, 0, 0);
+			glutSolidTorus(.1f, .2f, 50, 100);
+		glPopMatrix();
+
+		//rodas direitas
+		glPushMatrix();
+			glColor3f(0.5f, .0f, 0.f);
+			glTranslatef(0.4, 0.5, 0);
+			glRotatef(90.f, 1, 0, 0 );
+			glutSolidTorus(.1f, .2f, 50, 100);
+			glTranslatef(-0.8, 0, 0);
+			glutSolidTorus(.1f, .2f, 50, 100);
+		glPopMatrix();
+
 	glPopMatrix();
 
-	//roda traseira esquerda
-	glPushMatrix();
-	glColor3f(0.5f, .0f, 0.f);
-	glTranslatef(_position->getX() - 0.25, _position->getY() + 0.25, _position->getZ());
-	glScalef(0.2f, 0.2f, 0.2f);
-	glutSolidTorus(.3f, .6f, 50, 100);
-	glPopMatrix();
 }
