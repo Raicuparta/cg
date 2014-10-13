@@ -4,8 +4,12 @@ class Frog :
 	public DynamicObject
 {
 public:
-	Frog(std::vector<GameObject*>& game_objects);
+	Frog();
 	~Frog();
 	void draw();
+	void moveUp();
+	void moveDown();
+	void moveLeft();
+	void moveRight();
 };
 

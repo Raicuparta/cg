@@ -1,7 +1,7 @@
 #include "Car.h"
 #include <stdlib.h> /* srand, rand */
 
-Car::Car(std::vector<GameObject*>& game_objects) : DynamicObject(game_objects) {
+Car::Car() : DynamicObject() {
 	int rando = rand() % 5 + 1;
 	rando *= -1;
 	_position = new Vector3(-7, rando, 0);

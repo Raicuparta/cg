@@ -1,6 +1,6 @@
 #include "Road.h"
 
-Road::Road(std::vector<GameObject*>& game_objects) : StaticObject(game_objects) {
+Road::Road() : StaticObject() {
 }
 
 Road::~Road() {

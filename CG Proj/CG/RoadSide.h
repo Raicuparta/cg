@@ -4,7 +4,7 @@ class RoadSide :
 	public StaticObject
 {
 public:
-	RoadSide(std::vector<GameObject*>& game_objects);
+	RoadSide();
 	~RoadSide();
 	void draw();
 };

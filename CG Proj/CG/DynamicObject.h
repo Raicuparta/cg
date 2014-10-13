@@ -8,11 +8,11 @@ protected:
 	Vector3 _speed;
 
 public:
-	DynamicObject(std::vector<GameObject*>& game_objects);
+	DynamicObject();
 	~DynamicObject();
 	virtual void draw();
 	void setSpeed(const Vector3& speed);
 	void setSpeed(double x, double y, double z);
-	Vector3 getSpeed();
+	Vector3* getSpeed();
 };
 

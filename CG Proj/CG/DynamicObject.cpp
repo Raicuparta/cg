@@ -1,6 +1,6 @@
 #include "DynamicObject.h"
 
-DynamicObject::DynamicObject(std::vector<GameObject*>& game_objects) : GameObject(game_objects) {
+DynamicObject::DynamicObject() : GameObject() {
 }
 
 DynamicObject::~DynamicObject()
@@ -18,7 +18,7 @@ void DynamicObject::setSpeed(double x, double y, double z) {
 	_speed.set(x, y, z);
 }
 
-Vector3 DynamicObject::getSpeed() {
-	return _speed;
+Vector3* DynamicObject::getSpeed() {
+	return &_speed;
 }
 

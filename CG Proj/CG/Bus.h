@@ -4,7 +4,7 @@ class Bus :
 	public DynamicObject
 {
 public:
-	Bus(std::vector<GameObject*>& game_objects);
+	Bus();
 	~Bus();
 	void draw();
 };

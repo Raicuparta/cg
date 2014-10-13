@@ -4,7 +4,7 @@ class Turtle :
 	public DynamicObject
 {
 public:
-	Turtle(std::vector<GameObject*>& game_objects);
+	Turtle();
 	~Turtle();
 	void draw();
 };

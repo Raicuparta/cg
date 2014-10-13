@@ -4,7 +4,7 @@ class RiverSide :
 	public StaticObject
 {
 public:
-	RiverSide(std::vector<GameObject*>& game_objects);
+	RiverSide();
 	~RiverSide();
 	void draw();
 };

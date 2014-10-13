@@ -1,8 +1,9 @@
 #include "Frog.h"
 #include <iostream>
 
+#define SPEED 0.1
 
-Frog::Frog(std::vector<GameObject*>& game_objects) : DynamicObject(game_objects) {
+Frog::Frog() : DynamicObject() {
 	_position = new Vector3(0, -7, 0);
 }
 
@@ -53,7 +54,20 @@ void Frog::draw() {
 	glScalef(0.2f, 0.2f, 0.2f);
 	glutSolidCube(1.0f);
 	glPopMatrix();
-
-
-	
 }
+
+	void Frog::moveUp() {
+		setSpeed(getSpeed()->getX(), getSpeed()->getY() + SPEED, getSpeed()->getZ());
+	}
+
+	void  Frog::moveDown() {
+		setSpeed(getSpeed()->getX(), getSpeed()->getY() - SPEED, getSpeed()->getZ());
+	}
+
+	void  Frog::moveLeft() {
+		setSpeed(getSpeed()->getX() - SPEED, getSpeed()->getY(), getSpeed()->getZ());
+	}
+
+	void  Frog::moveRight() {
+		setSpeed(getSpeed()->getX() + SPEED, getSpeed()->getY(), getSpeed()->getZ());
+	}

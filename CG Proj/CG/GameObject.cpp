@@ -1,8 +1,8 @@
 #include "GameObject.h"
 
-GameObject::GameObject(std::vector<GameObject*>& game_objects) : Entity()
+GameObject::GameObject() : Entity()
 {
-	game_objects.push_back(this);
+	
 }
 
 

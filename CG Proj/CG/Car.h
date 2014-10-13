@@ -4,7 +4,7 @@ class Car :
 	public DynamicObject
 {
 public:
-	Car(std::vector<GameObject*>& game_objects);
+	Car();
 	~Car();
 	void draw();
 };

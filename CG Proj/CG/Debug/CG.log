@@ -1,31 +1,33 @@
-﻿Build started 06-10-2014 17:01:13.
-     1>Project "z:\Desktop\CG\CG Proj\CG\CG.vcxproj" on node 2 (Build target(s)).
+﻿Build started 13-10-2014 13:28:29.
+     1>Project "z:\Desktop\CG\CG Proj\CG\CG.vcxproj" on node 2 (Rebuild target(s)).
        Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\glut\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\glut\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Bus.cpp Camera.cpp Car.cpp DynamicObject.cpp Entity.cpp Frog.cpp GameManager.cpp GameObject.cpp River.cpp RiverSide.cpp Road.cpp RoadSide.cpp StaticObject.cpp TimberLog.cpp Turtle.cpp Vector3.cpp Vector4.cpp
+         Vector4.cpp
+         Vector3.cpp
+         Turtle.cpp
+         TimberLog.cpp
+         StaticObject.cpp
+         RoadSide.cpp
+         Road.cpp
+         RiverSide.cpp
+         River.cpp
+         GameObject.cpp
          GameManager.cpp
-     1>z:\desktop\cg\cg proj\cg\entity.h(4): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"z:\Desktop\CG\CG Proj\Debug\CG.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\..\glut\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"z:\Desktop\CG\CG Proj\Debug\CG.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"z:\Desktop\CG\CG Proj\Debug\CG.lib" /MACHINE:X86 Debug\Bus.obj
-         Debug\Camera.obj
-         Debug\Car.obj
-         Debug\DynamicObject.obj
-         Debug\Entity.obj
-         Debug\Frog.obj
-         Debug\GameManager.obj
-         Debug\GameObject.obj
-         Debug\River.obj
-         Debug\RiverSide.obj
-         Debug\Road.obj
-         Debug\RoadSide.obj
-         Debug\StaticObject.obj
-         Debug\TimberLog.obj
-         Debug\Turtle.obj
-         Debug\Vector3.obj
-         Debug\Vector4.obj
-         CG.vcxproj -> z:\Desktop\CG\CG Proj\Debug\CG.exe
-     1>Done Building Project "z:\Desktop\CG\CG Proj\CG\CG.vcxproj" (Build target(s)).
+     1>z:\desktop\cg\cg proj\cg\gamemanager.cpp(7): error C2511: 'GameManager::GameManager(void)' : overloaded member function not found in 'GameManager'
+                 z:\desktop\cg\cg proj\cg\gamemanager.h(13) : see declaration of 'GameManager'
+     1>z:\desktop\cg\cg proj\cg\gamemanager.cpp(89): error C2511: 'void GameManager::onTimer(int)' : overloaded member function not found in 'GameManager'
+                 z:\desktop\cg\cg proj\cg\gamemanager.h(13) : see declaration of 'GameManager'
+     1>z:\desktop\cg\cg proj\cg\gamemanager.cpp(143): error C2065: 'onTimer' : undeclared identifier
+         Frog.cpp
+         Entity.cpp
+         DynamicObject.cpp
+         Car.cpp
+         Camera.cpp
+         Bus.cpp
+         Generating Code...
+     1>Done Building Project "z:\Desktop\CG\CG Proj\CG\CG.vcxproj" (Rebuild target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.46
+Time Elapsed 00:00:06.04

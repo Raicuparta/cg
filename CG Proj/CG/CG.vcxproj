@@ -92,6 +92,7 @@
     <ClCompile Include="RiverSide.cpp" />
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="RoadSide.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="TimberLog.cpp" />
     <ClCompile Include="Turtle.cpp" />

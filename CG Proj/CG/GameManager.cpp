@@ -49,44 +49,46 @@ void reshape(GLsizei width, GLsizei height) {
 	}
 }
 
-void keyboard(unsigned char key, int x, int y)
+void keyPressed(unsigned char key, int x, int y)
 {
-	Vector3* temppos = NULL;
 	switch(key) {
 		case 'q': std::cout << "'Q' pressed" << std::endl; // Q - up
-			temppos = frog->getPosition();
-			if (temppos->getY() < 7)
-				temppos->set(temppos->getX(), temppos->getY()+1, temppos->getZ());
+			frog->moveUp();
 			break;
 		case 'a': std::cout << "'A' pressed" << std::endl; // A - down
-			temppos = frog->getPosition();
-			if (temppos->getY() > -7)
-				temppos->set(temppos->getX(), temppos->getY() - 1, temppos->getZ());
+			frog->moveDown();
 			break;
 		case 'o': std::cout << "'O' pressed" << std::endl; // O - left
-			temppos = frog->getPosition();
-			if (temppos->getX() > -7)
-				temppos->set(temppos->getX()-1, temppos->getY(), temppos->getZ());
+			frog->moveLeft();
 			break;
 		case 'p': std::cout << "'P' pressed" << std::endl; // P - right
-			temppos = frog->getPosition();
-			if (temppos->getX() < 7)
-				temppos->set(temppos->getX()+1, temppos->getY(), temppos->getZ());
+			frog->moveRight();
 			break;
 		default: break;
 	}
+}
 
+void keyReleased(unsigned char key, int x, int y) {
+	switch(key) {
+		case 'q': std::cout << "'Q' released" << std::endl; // Q - up
+			frog->moveDown();
+			break;
+		case 'a': std::cout << "'A' released" << std::endl; // A - down
+			frog->moveUp();
+			break;
+		case 'o': std::cout << "'O' released" << std::endl; // O - left
+			frog->moveRight();
+			break;
+		case 'p': std::cout << "'P' released" << std::endl; // P - right
+			frog->moveLeft();
+			break;
+		default: break;
+	}
+}
+
+void GameManager::onTimer(int value) {
+	update();
 	glutPostRedisplay();
-
-	
-}
-
-void keyPressed() {
-	
-}
-
-void GameManager::onTimer() {
-
 }
 
 void GameManager::idle() {
@@ -95,14 +97,11 @@ void GameManager::idle() {
 
 void GameManager::update() {
 
+	frog->setPosition(frog->getPosition()->operator+(*frog->getSpeed()));
+	
 }
 
 void GameManager::init() {
-
-}
-
-int main(int argc, char ** argv) {
-
 	glutInit(&argc, argv);
 
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
@@ -110,23 +109,26 @@ int main(int argc, char ** argv) {
 	glutInitWindowPosition(-1, -1);
 	glutCreateWindow("Super Frogger 64");
 
-	River* river = new River(_game_objects);
-	RiverSide* river_side = new RiverSide(_game_objects);
-	Road* road = new Road(_game_objects);
-	RoadSide* road_side = new RoadSide(_game_objects);
-	frog = new Frog(_game_objects);
-	car1 = new Car(_game_objects);
+	River* river = new River();
+	_game_objects.push_back(river);
+
+	RiverSide* river_side = new RiverSide();
+	_game_objects.push_back(river_side);
+
+	Road* road = new Road();
+	_game_objects.push_back(road);
+
+	RoadSide* road_side = new RoadSide();
+	_game_objects.push_back(road_side);
+
+	frog = new Frog();
+	_game_objects.push_back(frog);
+
+	car1 = new Car();
+	_game_objects.push_back(car1);
 
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
-
-
-	glutKeyboardFunc(keyboard);
-
-	
-
-	glutMainLoop();
-
-	return 0;
-
 }
+
+

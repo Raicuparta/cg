@@ -1,6 +1,6 @@
 #include "RoadSide.h"
 
-RoadSide::RoadSide(std::vector<GameObject*>& game_objects) : StaticObject(game_objects) {
+RoadSide::RoadSide() : StaticObject() {
 }
 
 RoadSide::~RoadSide() {

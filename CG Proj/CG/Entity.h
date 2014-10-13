@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <GL/glut.h>
-#include "Vector3.h";
+#include "Vector3.h"
 class Entity
 {
 protected:

@@ -1,6 +1,6 @@
 #include "RiverSide.h"
 
-RiverSide::RiverSide(std::vector<GameObject*>& game_objects) : StaticObject(game_objects) {
+RiverSide::RiverSide() : StaticObject() {
 }
 
 RiverSide::~RiverSide()
