@@ -11,6 +11,5 @@ public:
 	void moveDown();
 	void moveLeft();
 	void moveRight();
-	void update(int dt);
 };
 

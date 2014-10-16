@@ -2,6 +2,7 @@
 
 TimberLog::TimberLog() : DynamicObject() {
 	_position = new Vector3(0, 3, 0);
+	_speed = *(new Vector3(0, 0, 0));
 }
 
 TimberLog::~TimberLog()

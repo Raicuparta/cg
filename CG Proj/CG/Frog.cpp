@@ -72,10 +72,3 @@ void Frog::draw() {
 	void  Frog::moveRight() {
 		setSpeed(getSpeed()->getX() + SPEED, getSpeed()->getY(), getSpeed()->getZ());
 	}
-
-	void Frog::update(int dt) {
-		//setPosition(getPosition()->operator+(*getSpeed()));
-		Vector3 speed = *getSpeed();
-		Vector3 position = *getPosition();
-		setPosition(speed*dt + position);
-	}

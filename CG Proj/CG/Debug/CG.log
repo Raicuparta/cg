@@ -1,4 +1,4 @@
-﻿Build started 13-10-2014 18:06:36.
+﻿Build started 16-10-2014 15:33:35.
      1>Project "z:\Desktop\CG\CG Proj\CG\CG.vcxproj" on node 2 (Rebuild target(s)).
        Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
      1>ClCompile:
@@ -46,4 +46,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:05.44
+Time Elapsed 00:00:06.59

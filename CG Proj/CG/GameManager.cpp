@@ -1,9 +1,9 @@
 #include "GameManager.h"
 
-std::vector<GameObject*> _game_objects;
-Frog* frog = NULL;
-Car* car1 = NULL;
+std::vector<GameObject*> _static_objects;
+std::vector<DynamicObject*> _dynamic_objects;
 
+Frog* frog = new Frog();
 
 GameManager::GameManager() {
 	_current_time = 0;
@@ -18,7 +18,12 @@ void GameManager::display() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	for (GameObject* obj : _game_objects)
+	for (GameObject* obj : _static_objects)
+	{
+		obj->draw();
+	}
+
+	for (GameObject* obj : _dynamic_objects)
 	{
 		obj->draw();
 	}
@@ -115,10 +120,12 @@ void GameManager::idle(){
 }
 
 void GameManager::update(double dt) {
-	frog->update(dt);
-	//fazer ciclo for que percorre todos os objects e faz update
-	//ou se calhar so os dynamics
-	
+
+	for (DynamicObject* obj : _dynamic_objects)
+	{
+		obj->update(dt);
+	}
+
 }
 
 void GameManager::init() {
@@ -129,25 +136,27 @@ void GameManager::init() {
 	glutCreateWindow("Super Frogger 64");
 
 	River* river = new River();
-	_game_objects.push_back(river);
+	_static_objects.push_back(river);
 
 	RiverSide* river_side = new RiverSide();
-	_game_objects.push_back(river_side);
+	_static_objects.push_back(river_side);
 
 	Road* road = new Road();
-	_game_objects.push_back(road);
+	_static_objects.push_back(road);
 
 	RoadSide* road_side = new RoadSide();
-	_game_objects.push_back(road_side);
-
-	frog = new Frog();
-	_game_objects.push_back(frog);
-
-	car1 = new Car();
-	_game_objects.push_back(car1);
+	_static_objects.push_back(road_side);
 
 	TimberLog* _timber_log = new TimberLog();
-	_game_objects.push_back(_timber_log);
+	_dynamic_objects.push_back(_timber_log);
+
+	frog = new Frog();
+	_dynamic_objects.push_back(frog);
+
+	Car* car1 = new Car();
+	_dynamic_objects.push_back(car1);
+
+
 }
 
 

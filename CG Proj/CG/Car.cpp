@@ -5,6 +5,7 @@ Car::Car() : DynamicObject() {
 	int rando = rand() % 5 + 1;
 	rando *= -1;
 	_position = new Vector3(0, rando, 0);
+	_speed = *(new Vector3(0, 0, 0));
 }
 
 Car::~Car()
