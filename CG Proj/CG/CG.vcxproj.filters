@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Entities\GameObjects\DynamicObjects">
       <UniqueIdentifier>{3fb30bb0-6dca-44fe-8ea7-b5c9279bbeb1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\GameObjects\Cameras">
+      <UniqueIdentifier>{71d052c3-4d0c-4d33-9507-fd45d6ed2d2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -81,6 +84,12 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PerspectiveCamera.cpp">
+      <Filter>Source Files\Entities\GameObjects\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="OrthogonalCamera.cpp">
+      <Filter>Source Files\Entities\GameObjects\Cameras</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -132,6 +141,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vector4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerspectiveCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OrthogonalCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

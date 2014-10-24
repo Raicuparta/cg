@@ -2,6 +2,8 @@
 
 std::vector<GameObject*> _static_objects;
 std::vector<DynamicObject*> _dynamic_objects;
+std::vector<Camera*> _cameras;
+int _current_camera = 0;
 
 Frog* frog = new Frog();
 
@@ -31,32 +33,18 @@ void GameManager::display() {
 }
 
 void GameManager::reshape(GLsizei width, GLsizei height) {
-	// O ecra tem as dimensoes 15x15
-	// Cada unidade corresponde a um 'bloco' do jogo
-	// Por exemplo, a estrada tem uma largura de 5 unidades
-	float xmin = -7.5, xmax = 7.5, ymin = -7.5, ymax = 7.5;
 
-	float ratio = (xmax - xmin) / (ymax - ymin);
-	float aspect = (float)width / height;
 	glViewport(0, 0, width, height);
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
+	/*_cameras[_current_camera]->computeProjectionMatrix();
 
-	if (ratio < aspect)
-	{
-		float delta = ((ymax - ymin) * aspect - (xmax - xmin)) / 2;
-		gluOrtho2D(xmin - delta, xmax + delta, ymin, ymax);
-	}
-	else
-	{
-		float delta = ((xmax - xmin) / aspect - (ymax - ymin)) / 2;
-		gluOrtho2D(xmin, xmax, ymin - delta, ymax + delta);
-	}
+	_cameras[_current_camera]->reshape(width, height);
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	_cameras[_current_camera]->computeVisualizationMatrix();*/
+
 	
+
+
 }
 
 void GameManager::keyPressed(unsigned char key, int x, int y)
@@ -115,7 +103,7 @@ void GameManager::idle(){
     _current_time = glutGet(GLUT_ELAPSED_TIME);
     update(_current_time - _previous_time);
     _previous_time = _current_time;
-    glutPostRedisplay();
+    //glutPostRedisplay();
     
 }
 
@@ -125,6 +113,18 @@ void GameManager::update(double dt) {
 	{
 		obj->update(dt);
 	}
+
+	_cameras[_current_camera]->update();
+
+		glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	gluPerspective(100, 1, -5, 5);
+	//gluOrtho2D(-7.5, 7.5, -7.5, 7.5);
+	gluLookAt(frog->getPosition()->getX(), frog->getPosition()->getY() - 8, 5, frog->getPosition()->getX(), 7.5, 2, 0, 0, 1);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 
 }
 
@@ -156,7 +156,11 @@ void GameManager::init() {
 	Car* car1 = new Car();
 	_dynamic_objects.push_back(car1);
 
+	Car* car2 = new Car();
+	_dynamic_objects.push_back(car2);
 
+	OrthogonalCamera* ortho = new OrthogonalCamera(-7.5, 7.5, -7.5, 7.5, -5, 5);
+	_cameras.push_back(ortho);
 }
 
 

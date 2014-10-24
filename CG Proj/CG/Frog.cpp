@@ -1,7 +1,7 @@
 #include "Frog.h"
 #include <iostream>
 
-#define SPEED 0.01
+#define SPEED 0.02
 
 Frog::Frog() : DynamicObject() {
 	_position = new Vector3(0, -7, 0);
@@ -26,7 +26,7 @@ void Frog::draw() {
 
 	//pata superior direita
 	glPushMatrix();
-	glColor3f(.0f, .9f, .0f);
+	glColor3f(1.0f, .9f, 1.0f);
 	glTranslatef(_position->getX() + 0.3, _position->getY() + 0.3, _position->getZ());
 	glScalef(0.2f, 0.2f, 0.2f);
 	glutSolidCube(1.0f);

@@ -8,7 +8,7 @@ RiverSide::~RiverSide()
 }
 
 void RiverSide::draw() {
-	glColor3f(0.3f, 0.7f, 0.1f);
+	glColor3f(1.f, 0.f, 0.f);
 	glPushMatrix();
 	glTranslatef(0.f, 6.5f, 0.f);
 	glScalef(15.f, 2.f, 1.f);

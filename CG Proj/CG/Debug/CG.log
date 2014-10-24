@@ -1,8 +1,8 @@
-﻿Build started 16-10-2014 15:33:35.
+﻿Build started 24-10-2014 13:34:10.
      1>Project "z:\Desktop\CG\CG Proj\CG\CG.vcxproj" on node 2 (Rebuild target(s)).
        Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\glut\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Bus.cpp Camera.cpp Car.cpp DynamicObject.cpp Entity.cpp Frog.cpp GameManager.cpp GameObject.cpp River.cpp RiverSide.cpp Road.cpp RoadSide.cpp Main.cpp StaticObject.cpp TimberLog.cpp Turtle.cpp Vector3.cpp Vector4.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\glut\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Bus.cpp Camera.cpp Car.cpp DynamicObject.cpp Entity.cpp Frog.cpp GameManager.cpp GameObject.cpp OrthogonalCamera.cpp PerspectiveCamera.cpp River.cpp RiverSide.cpp Road.cpp RoadSide.cpp Main.cpp StaticObject.cpp TimberLog.cpp Turtle.cpp Vector3.cpp Vector4.cpp
          Vector4.cpp
          Vector3.cpp
          Turtle.cpp
@@ -13,6 +13,8 @@
          Road.cpp
          RiverSide.cpp
          River.cpp
+         PerspectiveCamera.cpp
+         OrthogonalCamera.cpp
          GameObject.cpp
          GameManager.cpp
          Frog.cpp
@@ -31,6 +33,8 @@
          Debug\Frog.obj
          Debug\GameManager.obj
          Debug\GameObject.obj
+         Debug\OrthogonalCamera.obj
+         Debug\PerspectiveCamera.obj
          Debug\River.obj
          Debug\RiverSide.obj
          Debug\Road.obj
@@ -46,4 +50,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:06.59
+Time Elapsed 00:00:07.50

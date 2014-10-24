@@ -26,7 +26,7 @@ void Car::draw() {
 
 		//rodas esquerdas
 		glPushMatrix();
-			glColor3f(0.5f, .0f, 0.f);
+			glColor3f(0.f, 1.f, 0.f);
 			glTranslatef(0.4, -0.5, 0);
 			glRotatef(90.f, 1, 0, 0 );
 			glutSolidTorus(.1f, .2f, 50, 100);

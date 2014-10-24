@@ -9,6 +9,9 @@
 #include "Frog.h"
 #include "Car.h"
 #include "TimberLog.h"
+#include "Camera.h"
+#include "OrthogonalCamera.h"
+#include "PerspectiveCamera.h"
 #pragma once
 
 class GameManager {

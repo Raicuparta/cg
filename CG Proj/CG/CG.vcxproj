@@ -88,6 +88,8 @@
     <ClCompile Include="Frog.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="OrthogonalCamera.cpp" />
+    <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="River.cpp" />
     <ClCompile Include="RiverSide.cpp" />
     <ClCompile Include="Road.cpp" />
@@ -108,6 +110,8 @@
     <ClInclude Include="Frog.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="OrthogonalCamera.h" />
+    <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="River.h" />
     <ClInclude Include="RiverSide.h" />
     <ClInclude Include="Road.h" />
