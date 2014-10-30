@@ -27,7 +27,7 @@ void reshape(GLsizei width, GLsizei height) {
 int main(int argc, char ** argv) {
 
 	glutInit(&argc, argv);
-
+	
 	gm = new GameManager();
 	gm->init();
 

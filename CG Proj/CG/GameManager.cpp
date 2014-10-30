@@ -18,8 +18,9 @@ GameManager::~GameManager() {
 
 void GameManager::display() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+	
 	for (GameObject* obj : _static_objects)
 	{
 		obj->draw();
@@ -36,14 +37,16 @@ void GameManager::reshape(GLsizei width, GLsizei height) {
 
 	glViewport(0, 0, width, height);
 
-	/*_cameras[_current_camera]->computeProjectionMatrix();
-
-	_cameras[_current_camera]->reshape(width, height);
-
-	_cameras[_current_camera]->computeVisualizationMatrix();*/
-
 	
+	/*glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(100, 1, -5, 5);
+	
+	//gluOrtho2D(-7.5, 7.5, -7.5, 7.5);
+	gluLookAt(frog->getPosition()->getX(), frog->getPosition()->getY() - 8, 1, 0, 0, 0, 0, 0, 1);
 
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();*/
 
 }
 
@@ -65,6 +68,16 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 		case 'p': // P - right
 		case 'h':
 			frog->moveRight();
+			break;
+
+		case '1':
+			_current_camera = 0;
+			break;
+		case '2':
+			_current_camera = 1;
+			break;
+		case '3':
+			_current_camera = 2;
 			break;
 		default: break;
 	}
@@ -104,7 +117,6 @@ void GameManager::idle(){
     update(_current_time - _previous_time);
     _previous_time = _current_time;
     //glutPostRedisplay();
-    
 }
 
 void GameManager::update(double dt) {
@@ -114,23 +126,18 @@ void GameManager::update(double dt) {
 		obj->update(dt);
 	}
 
+	if (_current_camera == 2) {
+		_cameras[_current_camera]->setPosition(frog->getPosition()->getX(), frog->getPosition()->getY() - 3, 5);
+		_cameras[_current_camera]->setAt(frog->getPosition()->getX(), frog->getPosition()->getY() + 10, 0);
+	}
+
 	_cameras[_current_camera]->update();
 
-		glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	gluPerspective(100, 1, -5, 5);
-	//gluOrtho2D(-7.5, 7.5, -7.5, 7.5);
-	gluLookAt(frog->getPosition()->getX(), frog->getPosition()->getY() - 8, 5, frog->getPosition()->getX(), 7.5, 2, 0, 0, 1);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
 
 }
 
 void GameManager::init() {
-
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(1200, 650);
 	glutInitWindowPosition(-1, -1);
 	glutCreateWindow("Super Frogger 64");
@@ -161,6 +168,13 @@ void GameManager::init() {
 
 	OrthogonalCamera* ortho = new OrthogonalCamera(-7.5, 7.5, -7.5, 7.5, -5, 5);
 	_cameras.push_back(ortho);
+
+	PerspectiveCamera* persp1 = new PerspectiveCamera(90.0, 1.0, 20.0);
+	_cameras.push_back(persp1);
+
+	PerspectiveCamera* persp2 = new PerspectiveCamera(90.0, 1.0, 20.0);
+	_cameras.push_back(persp2);
+
+	_current_camera = 0;
+
 }
-
-

@@ -16,15 +16,11 @@ OrthogonalCamera::~OrthogonalCamera(void)
 }
 
 void OrthogonalCamera::update() {
-		
-}
-
-void OrthogonalCamera::reshape(GLsizei width, GLsizei height) {
-
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 
 	float ratio = (_right - _left) / (_top - _bottom);
-	float aspect = (float)width / height;
-	glViewport(0, 0, width, height);
+	float aspect = (float)glutGet(GLUT_WINDOW_WIDTH) / glutGet(GLUT_WINDOW_HEIGHT);
 
 	if (ratio < aspect)
 	{
@@ -36,14 +32,15 @@ void OrthogonalCamera::reshape(GLsizei width, GLsizei height) {
 		float delta = ((_right - _left) / aspect - (_top - _bottom)) / 2;
 		gluOrtho2D(_left, _right, _bottom - delta, _top + delta);
 	}
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
 
 void OrthogonalCamera::computeProjectionMatrix() {
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
+
 }
 
 void OrthogonalCamera::computeVisualizationMatrix() {
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+
 }

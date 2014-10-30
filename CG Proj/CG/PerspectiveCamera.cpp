@@ -1,51 +1,40 @@
 #include "PerspectiveCamera.h"
 
+#include <iostream>
 
-PerspectiveCamera::PerspectiveCamera(double in_fovy, double in_aspect, double in_zNear, double in_zFar) :
+
+PerspectiveCamera::PerspectiveCamera(double in_fovy, double in_zNear, double in_zFar) :
 	Camera(in_zNear, in_zFar)
 {
 	_fovy = in_fovy;
-	_aspect = in_aspect;
+	_position = new Vector3(0, -10, 5);
+	_at = new Vector3(0, 0, 0);
 }
-
 
 PerspectiveCamera::~PerspectiveCamera(void)
 {
 }
 
-
-
 void PerspectiveCamera::update() {
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 
-}
+	float aspect = (float)glutGet(GLUT_WINDOW_WIDTH) / glutGet(GLUT_WINDOW_HEIGHT);
 
-void PerspectiveCamera::reshape(GLsizei width, GLsizei height) {
+	gluPerspective(_fovy, aspect, _near, _far);
+	gluLookAt(
+		_position->getX(), _position->getY(), _position->getZ(),
+		_at->getX(), _at->getY(), _at->getZ(),
+		0, 0, 1);
 
-
-	gluPerspective(_fovy, _aspect, _near, _far);
-	
-	/*float ratio = (_right - _left) / (_top - _bottom);
-	float aspect = (float)width / height;
-	glViewport(0, 0, width, height);
-
-	if (ratio < aspect)
-	{
-		float delta = ((_top - _bottom) * aspect - (_right - _left)) / 2;
-		gluOrtho2D(_left - delta, _right + delta, _bottom, _top);
-	}
-	else
-	{
-		float delta = ((_right - _left) / aspect - (_top - _bottom)) / 2;
-		gluOrtho2D(_left, _right, _bottom - delta, _top + delta);
-	}*/
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
 
 void PerspectiveCamera::computeProjectionMatrix() {
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
+
 }
 
 void PerspectiveCamera::computeVisualizationMatrix() {
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+
 }

@@ -13,48 +13,94 @@ Frog::~Frog()
 }
 
 void Frog::draw() {
-	//std::cout << "x: " << _position->getX() << " y: " << _position->getY() << " z: " << _position->getZ() << std::endl;
 
-	//corpo do sapo
+	
 	glPushMatrix();
-	glColor3f(0.f, 0.6f, 0.f);
-	glTranslatef(_position->getX(), _position->getY(), _position->getZ()+1);
-
-	glScalef(0.7f, 0.7f, 0.7f);
-	glutSolidSphere(.5f, 20.f, 20.f);
-	glPopMatrix();
-
-	//pata superior direita
-	glPushMatrix();
-	glColor3f(1.0f, .9f, 1.0f);
-	glTranslatef(_position->getX() + 0.3, _position->getY() + 0.3, _position->getZ());
+	glTranslatef(_position->getX(), _position->getY(), _position->getZ());
 	glScalef(0.2f, 0.2f, 0.2f);
-	glutSolidCube(1.0f);
+	glTranslatef(0, 0, 7);
+
+		//corpo
+		
+		glPushMatrix();
+		glColor3f(0.f, 0.6f, 0.f);
+		glScalef(2.f, 2.f, 5.f);
+		glutSolidSphere(1.f, 20.f, 20.f);
+		glPopMatrix();
+
+		//cabeca
+		glPushMatrix();
+		glColor3f(0.f, 0.6f, 0.f);
+		glTranslatef(0.f, 0.f, 3.5f);
+		glScalef(4.f, 2.f, 3.f);
+		glutSolidSphere(1.f, 20.f, 20.f);
+		glPopMatrix();
+
+
+		glColor3f(1.f, 1.f, 1.f);
+
+		//olho direito
+		glPushMatrix();
+		glTranslatef(1.f, 0.f, 6.f);
+		glScalef(1.f, 1.f, 2.f);
+		glutSolidSphere(1.f, 5.f, 5.f);
+		glPopMatrix();
+
+		//olho esquerdo
+		glPushMatrix();
+		glTranslatef(-1.f, 0.f, 6.f);
+		glScalef(1.f, 1.f, 2.f);
+		glutSolidSphere(1.f, 5.f, 5.f);
+		glPopMatrix();
+
+		glColor3f(0.2f, 0.6f, 0.2f);
+
+		//articulacao perna direita
+		glPushMatrix();
+		glTranslatef(1.f, 0.f, -2.f);
+		glutSolidSphere(1.f, 5.f, 5.f);
+		glPopMatrix();
+
+		//articulacao perna esquerda
+		glPushMatrix();
+		glTranslatef(-1.f, 0.f, -2.f);
+		glutSolidSphere(1.f, 5.f, 5.f);
+		glPopMatrix();
+
+		glColor3f(0.1f, 0.8f, 0.1f);
+
+		//perna direita
+		glPushMatrix();
+		glTranslatef(1.f, 0.f, -3.5f);
+		glScalef(1.f, 1.f, 3.f);
+		glutSolidSphere(1.f, 10.f, 10.f);
+		glPopMatrix();
+		
+		//perna esquerda
+		glPushMatrix();
+		glTranslatef(-1.f, 0.f, -3.5f);
+		glScalef(1.f, 1.f, 3.f);
+		glutSolidSphere(1.f, 10.f, 10.f);
+		glPopMatrix();
+
+		glColor3f(0.f, 0.3f, 0.f);
+
+		//pe direito
+		glPushMatrix();
+		glTranslatef(1.f, 0.f, -5.5f);
+		glScalef(1.5f, 3.f, 1.f);
+		glutSolidSphere(1.f, 10.f, 10.f);
+		glPopMatrix();
+
+		//pe esquerdo
+		glPushMatrix();
+		glTranslatef(-1.f, 0.f, -5.5f);
+		glScalef(1.5f, 3.f, 1.f);
+		glutSolidSphere(1.f, 10.f, 10.f);
+		glPopMatrix();
+
 	glPopMatrix();
 
-	//pata superior esquerda
-	glPushMatrix();
-	glColor3f(.0f, .9f, .0f);
-	glTranslatef(_position->getX() - 0.3, _position->getY() + 0.3, _position->getZ());
-	glScalef(0.2f, 0.2f, 0.2f);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-
-	//pata inferior esquerda
-	glPushMatrix();
-	glColor3f(.0f, .9f, .0f);
-	glTranslatef(_position->getX() - 0.3, _position->getY() - 0.3, _position->getZ());
-	glScalef(0.2f, 0.2f, 0.2f);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-
-	//pata inferior direita
-	glPushMatrix();
-	glColor3f(.0f, .9f, .0f);
-	glTranslatef(_position->getX() + 0.3, _position->getY() - 0.3, _position->getZ());
-	glScalef(0.2f, 0.2f, 0.2f);
-	glutSolidCube(1.0f);
-	glPopMatrix();
 }
 
 	void Frog::moveUp() {

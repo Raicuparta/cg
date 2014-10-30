@@ -14,7 +14,6 @@ public:
 	~OrthogonalCamera(void);
 
 	void update();
-	void reshape(GLsizei width, GLsizei height);
 	void computeProjectionMatrix();
 	void computeVisualizationMatrix();
 };
