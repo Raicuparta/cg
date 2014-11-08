@@ -25,12 +25,12 @@ void OrthogonalCamera::update() {
 	if (ratio < aspect)
 	{
 		float delta = ((_top - _bottom) * aspect - (_right - _left)) / 2;
-		gluOrtho2D(_left - delta, _right + delta, _bottom, _top);
+		glOrtho(_left - delta, _right + delta, _bottom, _top, _near, _far);
 	}
 	else
 	{
 		float delta = ((_right - _left) / aspect - (_top - _bottom)) / 2;
-		gluOrtho2D(_left, _right, _bottom - delta, _top + delta);
+		glOrtho(_left, _right, _bottom - delta, _top + delta, _near, _far);
 	}
 
 	glMatrixMode(GL_MODELVIEW);

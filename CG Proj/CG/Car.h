@@ -7,5 +7,6 @@ public:
 	Car();
 	~Car();
 	void draw();
+	void drawHexagon();
 };
 

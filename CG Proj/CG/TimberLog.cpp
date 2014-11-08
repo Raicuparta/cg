@@ -1,17 +1,17 @@
 #include "TimberLog.h"
 
 TimberLog::TimberLog() : DynamicObject() {
-	_position = new Vector3(0, 3, 0);
+	_position = new Vector3(0, 1, 0);
 	_speed = *(new Vector3(0, 0, 0));
+	_width = 3;
+	_height = 1;
 }
 
-TimberLog::~TimberLog()
-{
+TimberLog::~TimberLog() {
 }
 
 void TimberLog::draw() {
 	
-
 	/******** versao com cilindro
 	glPushMatrix();
 	glTranslatef(_position->getX(), _position->getY(), _position->getZ());
@@ -29,7 +29,7 @@ void TimberLog::draw() {
 	/******versao com cubo*******/
 	glPushMatrix();
 	glTranslatef(_position->getX(), _position->getY(), _position->getZ());
-		glColor3f(0.5, 0.3, 0.1);
+		glColor3f(166/255.f, 115/255.f, 86/255.f);
 		glScalef(2.5f, 0.8f, 0.8f);
 		glutSolidCube(1);
 	glPopMatrix();

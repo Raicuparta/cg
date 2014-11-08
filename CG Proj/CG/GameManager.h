@@ -12,6 +12,7 @@
 #include "Camera.h"
 #include "OrthogonalCamera.h"
 #include "PerspectiveCamera.h"
+#include "Limit.h"
 #pragma once
 
 class GameManager {
@@ -28,4 +29,5 @@ public:
 	void idle();
 	void update(double dt);
 	void init();
+	void reset();
 };

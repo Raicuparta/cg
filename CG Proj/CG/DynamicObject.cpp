@@ -26,5 +26,9 @@ void DynamicObject::update(double dt) {
 	//setPosition(getPosition()->operator+(*getSpeed()));
 	Vector3 speed = *getSpeed();
 	Vector3 position = *getPosition();
-	setPosition(speed*dt + position);
+
+	Vector3 newPosition = speed*dt + position;
+
+	setPosition(newPosition);
+
 }

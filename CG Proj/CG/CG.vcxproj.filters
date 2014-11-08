@@ -90,6 +90,9 @@
     <ClCompile Include="OrthogonalCamera.cpp">
       <Filter>Source Files\Entities\GameObjects\Cameras</Filter>
     </ClCompile>
+    <ClCompile Include="Limit.cpp">
+      <Filter>Source Files\Entities\GameObjects\StaticObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -147,6 +150,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OrthogonalCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Limit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
