@@ -30,7 +30,7 @@ void TimberLog::draw() {
 	glPushMatrix();
 	glTranslatef(_position->getX(), _position->getY(), _position->getZ());
 		glColor3f(166/255.f, 115/255.f, 86/255.f);
-		glScalef(2.5f, 0.8f, 0.8f);
+		glScalef(2.5f, 0.8f, 1.f);
 		glutSolidCube(1);
 	glPopMatrix();
 }
