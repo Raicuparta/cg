@@ -17,6 +17,16 @@ Frog::~Frog()
 
 void Frog::draw() {
 
+	GLfloat amb[]={0.07f,0.66f,0.34f,1.0f};
+	GLfloat diff[]={0.17f,0.4f,0.2f,1.0f};
+	GLfloat spec[]={0.12f,0.16f,0.18f,1.0f};
+	GLfloat shine=0;
+	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+
+
 	
 	glPushMatrix();
 	glTranslatef(_position->getX(), _position->getY(), _position->getZ());
@@ -55,21 +65,7 @@ void Frog::draw() {
 		glPopMatrix();
 
 
-		glColor3f(1.f, 1.f, 1.f);
 
-		//olho direito
-		glPushMatrix();
-		glTranslatef(1.f, 0.f, 6.f);
-		glScalef(1.f, 1.f, 2.f);
-		glutSolidSphere(1.f, 10.f, 10.f);
-		glPopMatrix();
-
-		//olho esquerdo
-		glPushMatrix();
-		glTranslatef(-1.f, 0.f, 6.f);
-		glScalef(1.f, 1.f, 2.f);
-		glutSolidSphere(1.f, 10.f, 10.f);
-		glPopMatrix();
 
 		//glColor3f(0.2f, 0.6f, 0.2f);
 		glColor3f(63/255.f, 120/255.f, 79/255.f);
@@ -119,6 +115,31 @@ void Frog::draw() {
 		glScalef(1.5f, 3.f, 1.f);
 		glutSolidSphere(1.f, 10.f, 10.f);
 		glPopMatrix();*/
+
+		GLfloat amb1[]={0.07f,0.66f,0.34f,1.0f};
+		GLfloat diff1[]={0.17f,0.4f,0.2f,1.0f};
+		GLfloat spec1[]={0.12f,0.16f,0.18f,1.0f};
+		GLfloat shine1=10;
+		glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb1);
+		glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff1);
+		glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec1);
+		glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine1);
+
+
+		glColor3f(1.f, 1.f, 1.f);
+		//olho direito
+		glPushMatrix();
+		glTranslatef(1.f, 0.f, 6.f);
+		glScalef(1.f, 1.f, 2.f);
+		glutSolidSphere(1.f, 10.f, 10.f);
+		glPopMatrix();
+
+		//olho esquerdo
+		glPushMatrix();
+		glTranslatef(-1.f, 0.f, 6.f);
+		glScalef(1.f, 1.f, 2.f);
+		glutSolidSphere(1.f, 10.f, 10.f);
+		glPopMatrix();
 
 	glPopMatrix();
 

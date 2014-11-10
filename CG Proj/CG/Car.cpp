@@ -16,33 +16,6 @@ Car::~Car()
 void Car::draw() {
 
 
-		//Metallic Red
-	GLfloat mat_ambient1[] = { .1, .1, .1, 1 };
-	GLfloat mat_diffuse1[] = { .1, .1, .1, 1 };
-	GLfloat mat_specular1[] = { .1, 0, 0, 1 };
-	GLfloat mat_shininess1[] = { 2 };
-	//Rubber Black
-	GLfloat mat_ambient2[] = { .3, .3, .3, 1 };
-	GLfloat mat_diffuse2[] = { .2, .2, .2, .5 };
-	GLfloat mat_specular2[] = { .1, .1, .1, 1 };
-	GLfloat mat_shininess2[] = { 5 };
-	//Metallic Silver
-	GLfloat mat_ambient3[] = { .7, .7, .7, 1 };
-	GLfloat mat_diffuse3[] = { .3, .3, .3, 1 };
-	GLfloat mat_specular3[] = { .7, .7, .7, 1 };
-	GLfloat mat_shininess3[] = { 120 };
-	//White Lights
-	GLfloat mat_ambient4[] = { .9, .9, .5, 1 };
-	GLfloat mat_diffuse4[] = { 1, .1, .1, 1 };
-	GLfloat mat_specular4[] = { .4, .4, 0, 1 };
-	GLfloat mat_shininess4[] = { 20 };
-	GLfloat mat_emission4[] = { .5, .4, .1, 0 };
-
-	glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient1);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse1);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular1);
-	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess1);
-
 
 	glPushMatrix();
 
@@ -50,14 +23,21 @@ void Car::draw() {
 		glScalef(0.2, 0.15, 0.2);
 
 		//tejadilho
+		glColor3d(1.f, 150/255.f, 50/255.f);
+
+		GLfloat amb[]={0.57f,0.36f,0.09f,1.0f};
+		GLfloat diff[]={0.57f,0.38f,0.25f,1.0f};
+		GLfloat spec[]={0.48f,0.4f,0.18f,1.0f};
+		GLfloat shine=0;
+		glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+		glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+		glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+		glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+
 		glPushMatrix();
 			glTranslatef(0, 0, 1);
 		
-
-
-			glColor3d(1, 1, 0);
-			
-			//glMaterialfv(GL_FRONT, GL_EMISSION, mat_emission4);
+		
 
 			glBegin(GL_QUADS);
 			glNormal3d(0, 0, 1);
@@ -67,8 +47,6 @@ void Car::draw() {
 			glVertex3d(-2,1,0.5);
 			glEnd();
 
-
-			//glColor3d(0, 0, 1);
 
 			glBegin(GL_QUADS);
 			glNormal3d(-1, 0, 1);
@@ -80,8 +58,6 @@ void Car::draw() {
 			glEnd();
 
 
-			//glColor3d(1, 1, 0);
-
 			glBegin(GL_QUADS);
 			glNormal3d(1, 0, 1);
 			glVertex3d(3,-2,-0.5);
@@ -91,8 +67,6 @@ void Car::draw() {
 			glEnd();
 
 
-			//glColor3d(0, 1, 1);
-
 			glBegin(GL_QUADS);
 			glNormal3d(0, 1, 1);
 			glVertex3d(3,2,-0.5);
@@ -101,8 +75,6 @@ void Car::draw() {
 			glVertex3d(2,1,0.5);
 			glEnd();
 
-
-			//glColor3d(1, 0, 1);
 
 			glBegin(GL_QUADS);
 			glNormal3d(0, -1, 1);
@@ -115,8 +87,16 @@ void Car::draw() {
 		glPopMatrix();
 
 		//carrocaria
+		glColor3d(1.f, 225/255.f, 79/255.f);
 
-
+		GLfloat amb1[]={1.0f,0.65f,0.36f,1.0f};
+		GLfloat diff1[]={0.87f,0.44f,0.25f,1.0f};
+		GLfloat spec1[]={0.53f,0.38f,0.28f,1.0f};
+		GLfloat shine1=0;
+		glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb1);
+		glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff1);
+		glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec1);
+		glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine1);
 		
 
 		glPushMatrix();
@@ -133,8 +113,6 @@ void Car::draw() {
 			glVertex3d(5,2.5,1);
 			glVertex3d(-5,2.5,1);
 			glEnd();
-		
-			glColor3d(0, 0, 1);
 
 			glBegin(GL_QUADS);
 			glNormal3d(0, -1, 0);
@@ -144,8 +122,6 @@ void Car::draw() {
 			glVertex3d(-5,-2.5,1);
 			glEnd();
 
-			glColor3d(0, 0, 1);
-
 			glBegin(GL_QUADS);
 			glNormal3d(0, 1, 0);
 			glVertex3d(-5,2.5,-1);
@@ -154,8 +130,6 @@ void Car::draw() {
 			glVertex3d(-5,2.5,1);
 			glEnd();
 
-			glColor3d(1, 0, 0);
-
 			glBegin(GL_QUADS);
 			glNormal3d(1, 0, 0);
 			glVertex3d(5,-2.5,-1);
@@ -163,8 +137,6 @@ void Car::draw() {
 			glVertex3d(5,2.5,1);
 			glVertex3d(5,-2.5,1);
 			glEnd();
-		
-			glColor3d(1, 0, 0);
 
 			glBegin(GL_QUADS);
 			glNormal3d(-1, 0, 0);
@@ -177,6 +149,17 @@ void Car::draw() {
 		glPopMatrix();
 
 		//rodas
+		glColor3d(81/255.f, 39/255.f, 38/255.f);
+
+		GLfloat amb2[]={0.16f,0.08f,0.05f,1.0f};
+		GLfloat diff2[]={0.39f,0.36f,0.37f,1.0f};
+		GLfloat spec2[]={0.0f,0.0f,0.0f,1.0f};
+		GLfloat shine2=0;
+		glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb2);
+		glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff2);
+		glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec2);
+		glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine2);
+
 		glTranslatef(0, 0, -2);
 
 		glPushMatrix();
