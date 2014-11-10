@@ -4,7 +4,7 @@
 Car::Car() : DynamicObject() {
 	_position = new Vector3(0, 0, 0);
 	_speed = *(new Vector3(0.0008, 0, 0));
-	_width = 1;
+	_width = 2;
 	_height = 0.6;
 
 }
@@ -26,9 +26,9 @@ void Car::draw() {
 		glColor3d(1.f, 150/255.f, 50/255.f);
 
 		GLfloat amb[]={0.57f,0.36f,0.09f,1.0f};
-		GLfloat diff[]={0.57f,0.38f,0.25f,1.0f};
-		GLfloat spec[]={0.48f,0.4f,0.18f,1.0f};
-		GLfloat shine=0;
+		GLfloat diff[]={0.5, 0.5, 0.5};
+		GLfloat spec[]={0.1, 0.1, 0.1};
+		GLfloat shine=1;
 		glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
 		glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
 		glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
@@ -36,9 +36,8 @@ void Car::draw() {
 
 		glPushMatrix();
 			glTranslatef(0, 0, 1);
-		
-		
-
+			glScalef(1, 1, 2);
+			
 			glBegin(GL_QUADS);
 			glNormal3d(0, 0, 1);
 			glVertex3d(-2,-1,0.5);
@@ -46,7 +45,6 @@ void Car::draw() {
 			glVertex3d(2,1,0.5);
 			glVertex3d(-2,1,0.5);
 			glEnd();
-
 
 			glBegin(GL_QUADS);
 			glNormal3d(-1, 0, 1);

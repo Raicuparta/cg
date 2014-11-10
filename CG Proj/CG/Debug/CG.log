@@ -1,4 +1,4 @@
-﻿Build started 10-11-2014 13:53:50.
+﻿Build started 10-11-2014 18:51:39.
      1>Project "z:\Desktop\CG2\CG Proj\CG\CG.vcxproj" on node 2 (Build target(s)).
        Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
      1>ClCompile:
@@ -8,6 +8,7 @@
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"z:\Desktop\CG2\CG Proj\Debug\CG.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\..\glut\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"z:\Desktop\CG2\CG Proj\Debug\CG.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"z:\Desktop\CG2\CG Proj\Debug\CG.lib" /MACHINE:X86 Debug\Bus.obj
          Debug\Camera.obj
          Debug\Car.obj
+         Debug\Draw.obj
          Debug\DynamicObject.obj
          Debug\Entity.obj
          Debug\Frog.obj
@@ -32,4 +33,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.46
+Time Elapsed 00:00:02.13

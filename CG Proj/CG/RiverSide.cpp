@@ -31,33 +31,15 @@ void RiverSide::draw() {
 	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
 
 	glPushMatrix();
-	for(float i = -7.5; i < 7.5 ; i += 1) {
-		for(float j = 7.5; j > 5.5; j -= 1) {
-			glBegin(GL_QUADS);
-			glNormal3f(0, 0, 1);
-			glVertex3f(i , j, 0.5);
-			glVertex3f(i , j-1, 0.5);
-			glVertex3f(i+1 , j-1, 0.5);
-			glVertex3f(i+1 , j, 0.5);
-			glEnd();
-		}
-	}
-	
+		glTranslatef(-7.5, 5.5, 0.5);
+		Draw::plane(10, 60, 15, 2);
 	glPopMatrix();
 
 	glPushMatrix();
-
-	//Altura RiverSide
-	for(float k = -7.5; k < 7.5; k += 1) {
-			glBegin(GL_QUADS);
-			glNormal3f(0, -1, 0);
-			glVertex3f(k , 5.5, 0.5);
-			glVertex3f(k , 5.5, 0);
-			glVertex3f(k+1 , 5.5, 0);
-			glVertex3f(k+1 , 5.5, 0.5);
-			glEnd();
-	}
-
+		//Altura RiverSide
+		glTranslatef(-7.5, 5.5, 0);
+		glRotatef(90, 1, 0, 0);
+		Draw::plane(5, 60, 15, 0.5);
 	glPopMatrix();
 
 }

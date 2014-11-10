@@ -31,57 +31,14 @@ void RoadSide::draw() {
 
 	//Entre o rio e a estrada (Largura = 1)
 	glPushMatrix();
-	for(float i = -7.5; i < 7.5 ; i += 1) {
-		float j = 0.5;
-		glBegin(GL_QUADS);
-		glNormal3f(0, 0, 1);
-		glVertex3f(i , j, 0.5);
-		glVertex3f(i , j-1, 0.5);
-		glVertex3f(i+1 , j-1, 0.5);
-		glVertex3f(i+1 , j, 0.5);
-		glEnd();
-		
-	}
+		glTranslatef(-7.5, -0.5, 0.5);
+		Draw::plane(10, 60, 15, 1);
+	glPopMatrix();
 
 	//Ao lado da estrada (Largura = 2)
-	for(float i = -7.5; i < 7.5 ; i += 1) {
-		for(float j = -5.5; j > -7.5; j -= 1) {
-			glBegin(GL_QUADS);
-			glNormal3f(0, 0, 1);
-			glVertex3f(i , j, 0.5);
-			glVertex3f(i , j-1, 0.5);
-			glVertex3f(i+1 , j-1, 0.5);
-			glVertex3f(i+1 , j, 0.5);
-			glEnd();
-		}
-	}
-	glPopMatrix();
-
-	/*
 	glPushMatrix();
-
-	//Altura RoadSide (lado do rio)
-	for(float k = -7.5; k < 7.5; k += 1) {
-			glBegin(GL_QUADS);
-			glNormal3f(0, 1, 0);
-			glVertex3f(k , 0.5, 0.5);
-			glVertex3f(k , 0.5, 0);
-			glVertex3f(k+1 , 0.5, 0);
-			glVertex3f(k+1 , 0.5, 0.5);
-			glEnd();
-	}
-
-	//Altura RoadSide (lado da estrada)
-	for(float k = -7.5; k < 7.5; k += 1) {
-			glBegin(GL_QUADS);
-			glNormal3f(0, -1, 0);
-			glVertex3f(k , -0.5, 0.5);
-			glVertex3f(k , -0.5, 0);
-			glVertex3f(k+1 , -0.5, 0);
-			glVertex3f(k+1 , -0.5, 0.5);
-			glEnd();
-	}
-
+		glTranslatef(-7.5, -7.5, 0.5);
+		Draw::plane(10, 60, 15, 2);
 	glPopMatrix();
-	*/
+
 }

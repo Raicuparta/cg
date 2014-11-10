@@ -11,20 +11,18 @@ std::vector<TimberLog*> _timber_logs;
 std::vector<Car*> _cars;
 std::vector<Camera*> _cameras;
 
-
 int _current_camera = 0;
 float _timer = 0;
 float _speed_timer = 0;
 bool in_timberlog = false; //podia estar no frog
 int _speed = 1;
 
-Lights* gameLights = new Lights();
+Lights* _game_lights;
 
 
 Frog* frog;
 River* river;
-Limit* rightLimit;
-Limit* leftLimit;
+Limit* limit;
 RiverSide* river_side;
 
 GameManager::GameManager() {
@@ -37,7 +35,7 @@ GameManager::~GameManager() {
 }
 
 void GameManager::display() {
-	glClearColor(57/255.f, 33/255.f, 32/255.f, 1);
+	glClearColor(31/255.f, 48/255.f, 63/255.f, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 	
@@ -58,17 +56,6 @@ void GameManager::display() {
 void GameManager::reshape(GLsizei width, GLsizei height) {
 
 	glViewport(0, 0, width, height);
-
-	
-	/*glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(100, 1, -5, 5);
-	
-	//gluOrtho2D(-7.5, 7.5, -7.5, 7.5);
-	gluLookAt(frog->getPosition()->getX(), frog->getPosition()->getY() - 8, 1, 0, 0, 0, 0, 0, 1);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();*/
 
 }
 
@@ -124,6 +111,16 @@ void GameManager::keyReleased(unsigned char key, int x, int y) {
 		case 'h':
 			frog->moveLeft();
 			break;
+		case 'l':
+			_game_lights->toggleLighting();
+			break;
+		case 'n':
+			_game_lights->toggleAmbient();
+			break;
+		case 'c':
+			_game_lights->toggleSpotlights();
+			break;
+
 		default: break;
 	}
 }
@@ -271,13 +268,9 @@ void GameManager::init() {
 	RoadSide* road_side = new RoadSide();
 	_static_objects.push_back(road_side);
 
-	rightLimit = new Limit();
-	rightLimit->setPosition(10.5, 0, 0);
-	_static_objects.push_back(rightLimit);
-
-	leftLimit = new Limit();
-	leftLimit->setPosition(-10.5, 0, 0);
-	_static_objects.push_back(leftLimit);
+	limit = new Limit();
+	limit->setPosition(7.5, 0, 0);
+	_static_objects.push_back(limit);
 
 	OrthogonalCamera* ortho = new OrthogonalCamera(-7.5, 7.5, -7.5, 7.5, -100, 100);
 	_cameras.push_back(ortho);
@@ -290,29 +283,9 @@ void GameManager::init() {
 
 	_current_camera = 0;
 
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
-			glEnable(GL_LIGHT2);
-			glEnable(GL_LIGHT3);
-			glEnable(GL_LIGHT4);
-			glEnable(GL_LIGHT5);
-			glEnable(GL_LIGHT6);
-	gameLights->setDirectional();
-			gameLights->setPointLights();
-			gameLights->setLighting();
-			display();
+	_game_lights = new Lights();
+
 
-
-
-	GLfloat a[] = {0.2, 0.2, 0.2, 1.0};	GLfloat b[] = {0.1, 0.1, 0.1, 1.0};	GLfloat c[] = {0.2, 0.2, 0.2, 1.0};	GLfloat d[] = {0.1, 0.1, 0.1, 1.0};	
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, a);
-	GLfloat l0_direction[] = {0, -5, 10, 0 };
-	glLightfv(GL_LIGHT0, GL_POSITION, l0_direction);
-
-	//glLightfv(GL_LIGHT0, GL_AMBIENT, b);
-	//glLightfv(GL_LIGHT0, GL_DIFFUSE, c);
-	//glLightfv(GL_LIGHT0, GL_SPECULAR, d);
 }
 
 void GameManager::reset() {

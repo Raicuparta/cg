@@ -31,7 +31,7 @@ void Road::draw() {
 
 
 	glPushMatrix();
-	for(float i = -7.5; i < 7.5 ; i += 1) {
+	/*for(float i = -7.5; i < 7.5 ; i += 1) {
 		for(float j = -0.5; j >= -4.5; j -= 1) {
 			glBegin(GL_QUADS);
 			glNormal3f(0, 0, 1);
@@ -41,7 +41,10 @@ void Road::draw() {
 			glVertex3f(i+1 , j, 0.5);
 			glEnd();
 		}
-	}
+	}*/
+		glTranslatef(-7.5, -5.5, 0.5);
+		Draw::plane(25, 60, 15, 5);
+
 	glPopMatrix();
 
 }

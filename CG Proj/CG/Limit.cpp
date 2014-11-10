@@ -4,8 +4,9 @@
 Limit::Limit(void)
 {
 	_position = new Vector3(0, 0, 0);
-	_width = 6;
-	_height = 20;
+	_width = 0;
+	_height = 0;
+
 }
 
 
@@ -14,13 +15,17 @@ Limit::~Limit(void)
 }
 
 void Limit::draw() {
-	//glColor3f(81/255.f, 39/255.f, 38/255.f);
-	/*glColor3f(57/255.f, 33/255.f, 32/255.f);
+	GLdouble eq1[4] = { 1, 0.0, 0.0, 0.0 };
+	glPushMatrix();
+	glTranslatef(-_position->getX(), _position->getY(), _position->getZ());
+	glClipPlane(GL_CLIP_PLANE0, eq1);
+	glEnable(GL_CLIP_PLANE0);
+	glPopMatrix();
+
+	GLdouble eq2[4] = { -1, 0.0, 0.0, 0.0 };
 	glPushMatrix();
 	glTranslatef(_position->getX(), _position->getY(), _position->getZ());
-	glScalef(6, 20, 20);
-	
-	
-	glutSolidCube(1);
-	glPopMatrix();*/
+	glClipPlane(GL_CLIP_PLANE1, eq2);
+	glEnable(GL_CLIP_PLANE1);
+	glPopMatrix();
 }

@@ -30,17 +30,8 @@ void River::draw() {
 	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
 
 	glPushMatrix();
-	for(float i = -7.5; i < 7.5 ; i += 1) {
-		for(float j = 5.5; j >= 0.5; j -= 1) {
-			glBegin(GL_QUADS);
-			glNormal3f(0, 0, 1);
-			glVertex3f(i , j, 0.2);
-			glVertex3f(i , j-1, 0.2);
-			glVertex3f(i+1 , j-1, 0.2);
-			glVertex3f(i+1 , j, 0.2);
-			glEnd();
-		}
-	}
+		glTranslatef(-7.5, 0.5, 0.2);
+		Draw::plane(25, 60, 15, 5);
 	glPopMatrix();
 
 }
