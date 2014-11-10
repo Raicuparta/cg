@@ -1,5 +1,7 @@
 #include "GameManager.h"
 
+#include "Lights.h"
+
 #define DEFAULT_CAR_SPEED 0.0008
 #define DEFAULT_LOG_SPEED 0.0008
 
@@ -16,6 +18,7 @@ float _speed_timer = 0;
 bool in_timberlog = false; //podia estar no frog
 int _speed = 1;
 
+Lights* gameLights = new Lights();
 
 
 Frog* frog;
@@ -139,6 +142,13 @@ void GameManager::idle(){
 }
 
 void GameManager::update(double dt) {
+
+	/*if (glIsEnabled(GL_LIGHT1)){
+		gameLights->setDirectional();
+		gameLights->setPointLights();
+		gameLights->setLighting();
+	}*/
+
 
 	bool kill = false;
 
@@ -282,10 +292,27 @@ void GameManager::init() {
 
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	GLfloat amb[] = {0.1f, 0.1f, 0.1f, 1.0};
-	glLightfv(GL_LIGHT0, GL_AMBIENT, amb);
-	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT,amb);
+	glEnable(GL_LIGHT1);
+			glEnable(GL_LIGHT2);
+			glEnable(GL_LIGHT3);
+			glEnable(GL_LIGHT4);
+			glEnable(GL_LIGHT5);
+			glEnable(GL_LIGHT6);
+	gameLights->setDirectional();
+			gameLights->setPointLights();
+			gameLights->setLighting();
+			display();
 
+
+
+	GLfloat a[] = {0.2, 0.2, 0.2, 1.0};	GLfloat b[] = {0.1, 0.1, 0.1, 1.0};	GLfloat c[] = {0.2, 0.2, 0.2, 1.0};	GLfloat d[] = {0.1, 0.1, 0.1, 1.0};	
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, a);
+	GLfloat l0_direction[] = {0, -5, 10, 0 };
+	glLightfv(GL_LIGHT0, GL_POSITION, l0_direction);
+
+	//glLightfv(GL_LIGHT0, GL_AMBIENT, b);
+	//glLightfv(GL_LIGHT0, GL_DIFFUSE, c);
+	//glLightfv(GL_LIGHT0, GL_SPECULAR, d);
 }
 
 void GameManager::reset() {

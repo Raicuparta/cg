@@ -88,6 +88,7 @@
     <ClCompile Include="Frog.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Lights.cpp" />
     <ClCompile Include="Limit.cpp" />
     <ClCompile Include="OrthogonalCamera.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
@@ -111,6 +112,7 @@
     <ClInclude Include="Frog.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Lights.h" />
     <ClInclude Include="Limit.h" />
     <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
