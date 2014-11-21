@@ -6,6 +6,7 @@ class Frog :
 {
 private:
 	TimberLog* _log;
+	float _angle;
 
 public:
 	Frog();
@@ -18,5 +19,6 @@ public:
 	void kill();
 	void update(double dt);
 	void setLog(TimberLog* log);
+	void Frog::setAngle(float angle);
 };
 

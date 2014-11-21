@@ -1,13 +1,14 @@
 #include "Frog.h"
 #include <iostream>
 
-#define SPEED 0.01
+#define SPEED 0.005
 
 Frog::Frog() : DynamicObject() {
 	_position = new Vector3(0, -6, 1);
 	_speed = *(new Vector3(0, 0, 0));
 	_width = 0.5;
 	_height = 0.3;
+	_angle = 0;
 }
 
 Frog::~Frog()
@@ -30,10 +31,12 @@ void Frog::draw() {
 
 
 	
+
 	glPushMatrix();
 	glTranslatef(_position->getX(), _position->getY(), _position->getZ());
 	glScalef(0.1f, 0.1f, 0.1f);
-	glTranslatef(1, 1, 3);
+	glTranslatef(1, 1, 1);
+	glRotatef(_angle, 0, 0, 1);
 
 		//corpo
 		glPushMatrix();
@@ -43,7 +46,7 @@ void Frog::draw() {
 		
 
 
-		//never skip leg day
+		//pernas
 
 		//perna esquerda
 		glPushMatrix();
@@ -60,7 +63,7 @@ void Frog::draw() {
 		glPopMatrix();
 
 
-		//bracos da bia
+		//bracos
 
 		//ombro esquerdo
 		glPushMatrix();
@@ -177,14 +180,17 @@ void Frog::draw() {
 			newPosition.set(getPosition()->getX(), newPosition.getY(), newPosition.getZ());
 		}
 
-		if (newPosition.getY() > 7 || newPosition.getY() < -6.1) {
+		if (newPosition.getY() > 7 || newPosition.getY() < -7.1) {
 
 			newPosition.set(newPosition.getX(), getPosition()->getY(), newPosition.getZ());
 		}
-
 		setPosition(newPosition);
 	}
 
 	void Frog::setLog(TimberLog* log) {
 		_log = log;
+	}
+
+	void Frog::setAngle(float angle) {
+		_angle = angle;
 	}

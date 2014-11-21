@@ -14,7 +14,6 @@ std::vector<Camera*> _cameras;
 int _current_camera = 0;
 float _timer = 0;
 float _speed_timer = 0;
-bool in_timberlog = false; //podia estar no frog
 int _speed = 1;
 
 Lights* _game_lights;
@@ -65,18 +64,22 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 		case 'q': // Q - up
 		case 't':
 			frog->moveUp();
+			frog->setAngle(0);
 			break;
 		case 'a':// A - down
 		case 'g':
 			frog->moveDown();
+			frog->setAngle(180);
 			break;
 		case 'o': // O - left
 		case 'f':
 			frog->moveLeft();
+			frog->setAngle(90);
 			break;
 		case 'p': // P - right
 		case 'h':
 			frog->moveRight();
+			frog->setAngle(270);
 			break;
 
 		case '1':
@@ -135,17 +138,9 @@ void GameManager::idle(){
     _current_time = glutGet(GLUT_ELAPSED_TIME);
     update(_current_time - _previous_time);
     _previous_time = _current_time;
-    //glutPostRedisplay();
 }
 
 void GameManager::update(double dt) {
-
-	/*if (glIsEnabled(GL_LIGHT1)){
-		gameLights->setDirectional();
-		gameLights->setPointLights();
-		gameLights->setLighting();
-	}*/
-
 
 	bool kill = false;
 
@@ -204,10 +199,6 @@ void GameManager::update(double dt) {
 			if (frog->collidesWith(obj)) {
 				frog->setLog(obj);
 
-				/*if (!in_timberlog) {
-					frog->setSpeed(*frog->getSpeed() + *obj->getSpeed());
-					in_timberlog = true;
-				}*/
 				kill = false;
 				break;
 			}
@@ -243,6 +234,8 @@ void GameManager::update(double dt) {
 	}
 
 	_cameras[_current_camera]->update();
+
+	_game_lights->updateFrogLight(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ());
 
 }
 
@@ -284,6 +277,8 @@ void GameManager::init() {
 	_current_camera = 0;
 
 	_game_lights = new Lights();
+
+	_game_lights->toggleFrogLight();
 
 
 }
