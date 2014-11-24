@@ -168,4 +168,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="D:\FroggerCG\river.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="roadTexture.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

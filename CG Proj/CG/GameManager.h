@@ -1,6 +1,5 @@
 #include <vector>
 #include <GL/glut.h>
-#include <iostream>
 #include "GameObject.h"
 #include "River.h"
 #include "RiverSide.h"

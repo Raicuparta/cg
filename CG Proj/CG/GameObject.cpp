@@ -2,7 +2,9 @@
 
 GameObject::GameObject() : Entity()
 {
-	
+	_bmpWidth = -1;
+    _bmpHeight = -1;
+    _bmpSize = -1;
 }
 
 

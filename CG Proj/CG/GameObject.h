@@ -7,6 +7,11 @@ class GameObject :
 {
 protected:
 	double _width, _height;
+	int _bmpWidth;
+    int _bmpHeight;
+    int _bmpSize;
+	GLubyte * _imageData;
+	GLuint _texture;
 
 public:
 	GameObject();

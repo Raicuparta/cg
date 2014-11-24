@@ -1,7 +1,5 @@
 #include "PerspectiveCamera.h"
 
-#include <iostream>
-
 
 PerspectiveCamera::PerspectiveCamera(double in_fovy, double in_zNear, double in_zFar) :
 	Camera(in_zNear, in_zFar)

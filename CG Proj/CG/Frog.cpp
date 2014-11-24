@@ -1,5 +1,4 @@
 #include "Frog.h"
-#include <iostream>
 
 #define SPEED 0.005
 
