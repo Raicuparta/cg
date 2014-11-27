@@ -48,9 +48,12 @@ void Draw::texturedPlane(int lines, int columns, float width, float height, GLui
 			glVertex3f((c+1)*quad_width , (l+1)*quad_height, 0);
 			glTexCoord2f(1.0f, 0.0f);
 			glVertex3f(c*quad_width , (l+1)*quad_height, 0);
+
 			glEnd();
 		}
 	}
+
+	
 
 	glDisable(GL_TEXTURE_2D);
 }
@@ -103,17 +106,19 @@ void Draw::hexagonalPrism() {
 
 void Draw::loadTexture(const char * filename, int * width, int * height, int * size, unsigned char **pixel_data) {
     
+	std::cout << "filename: " << filename << std::endl;
+
     FILE * fp = fopen(filename, "r");
     
     if (fp == NULL){
-        std::cout << "Could't open file...Aborting" << std::endl;
+        std::cout << "Couldn't open file...Aborting" << std::endl;
     }
     
     short identifier = -1;
     
     fread(&identifier, 1, sizeof(short), fp);
 
-    int filesize = -1;
+	int filesize = -1;
     fread(&filesize, 1, sizeof(int), fp);
     int reserved = -1;
     fread(&reserved, 1, sizeof(reserved), fp);

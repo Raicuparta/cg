@@ -4,7 +4,7 @@ River::River() : StaticObject() {
 	_width = 15;
 	_height = 5;
 	_position = new Vector3(0, 3, 0);
-	Draw::loadTexture("river.bmp", &_bmpWidth, &_bmpHeight, &_bmpSize, (unsigned char**)&_imageData);
+	Draw::loadTexture("roadAsphalt.bmp", &_bmpWidth, &_bmpHeight, &_bmpSize, (unsigned char**)&_imageData);
 }
 
 River::~River()
