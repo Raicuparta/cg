@@ -10,11 +10,14 @@ std::vector<DynamicObject*> _dynamic_objects;
 std::vector<TimberLog*> _timber_logs;
 std::vector<Car*> _cars;
 std::vector<Camera*> _cameras;
+std::vector<Frog *> _lives;
 
 int _current_camera = 0;
 float _timer = 0;
 float _speed_timer = 0;
 int _speed = 1;
+int _livesN = 5;
+bool _running = true;
 
 Lights* _game_lights;
 
@@ -49,7 +52,11 @@ void GameManager::display() {
 	}
 
 	frog->draw();
+	overlay();
+
 	glFlush();
+
+
 }
 
 void GameManager::reshape(GLsizei width, GLsizei height) {
@@ -60,28 +67,28 @@ void GameManager::reshape(GLsizei width, GLsizei height) {
 
 void GameManager::keyPressed(unsigned char key, int x, int y)
 {
-	switch(key) {
+	if (_running) {
+		switch(key) {
 		case 'q': // Q - up
-		case 't':
+		case 'k':
 			frog->moveUp();
 			frog->setAngle(0);
 			break;
 		case 'a':// A - down
-		case 'g':
+		case ',':
 			frog->moveDown();
 			frog->setAngle(180);
 			break;
 		case 'o': // O - left
-		case 'f':
+		case 'm':
 			frog->moveLeft();
 			frog->setAngle(90);
 			break;
 		case 'p': // P - right
-		case 'h':
+		case '.':
 			frog->moveRight();
 			frog->setAngle(270);
 			break;
-
 		case '1':
 			_current_camera = 0;
 			break;
@@ -92,27 +99,29 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 			_current_camera = 2;
 			break;
 		default: break;
+		}
 	}
-	glutPostRedisplay();
+	
 }
 
 void GameManager::keyReleased(unsigned char key, int x, int y) {
-	switch(key) {
+	if (_running) {
+		switch(key) {
 		case 'q': // Q - up
-		case 't':
-			frog->moveDown();
+		case 'k':
+			frog->setSpeed(0, 0, 0);
 			break;
 		case 'a': // A - down
-		case 'g':
-			frog->moveUp();
+		case ',':
+			frog->setSpeed(0, 0, 0);
 			break;
 		case 'o': // O - left
-		case 'f':
-			frog->moveRight();
+		case 'm':
+			frog->setSpeed(0, 0, 0);
 			break;
 		case 'p': // P - right
-		case 'h':
-			frog->moveLeft();
+		case '.':
+			frog->setSpeed(0, 0, 0);
 			break;
 		case 'l':
 			_game_lights->toggleLighting();
@@ -123,9 +132,18 @@ void GameManager::keyReleased(unsigned char key, int x, int y) {
 		case 'c':
 			_game_lights->toggleSpotlights();
 			break;
+		case 'h':
+			_game_lights->toggleFrogLight();
+			break;
 
 		default: break;
+		}
 	}
+
+	if (key == 's') {
+		togglePause();
+	}
+	
 }
 
 void GameManager::onTimer(int value) {
@@ -142,100 +160,107 @@ void GameManager::idle(){
 
 void GameManager::update(double dt) {
 
-	bool kill = false;
+	if (_running) {
 
-	//gerador de carros e troncos
-	if (glutGet(GLUT_ELAPSED_TIME) > _timer + 3000/_speed) {
-		_timer = glutGet(GLUT_ELAPSED_TIME);
-		TimberLog* timber_log = new TimberLog();
-		int y = rand() % 5 + 1;
+		bool kill = false;
 
-		if (y % 2 == 0) {
-			timber_log->setSpeed(DEFAULT_LOG_SPEED*_speed, 0, 0);
-			timber_log->setPosition(-10, y, 0);
-		} else {
-			timber_log->setSpeed(-DEFAULT_LOG_SPEED*_speed, 0, 0);
-			timber_log->setPosition(10, y, 0);
-		}
+		//gerador de carros e troncos
+		if (glutGet(GLUT_ELAPSED_TIME) > _timer + 3000/_speed) {
+			_timer = glutGet(GLUT_ELAPSED_TIME);
+			TimberLog* timber_log = new TimberLog();
+			int y = rand() % 5 + 1;
+
+			if (y % 2 == 0) {
+				timber_log->setSpeed(DEFAULT_LOG_SPEED*_speed, 0, 0);
+				timber_log->setPosition(-10, y, 0);
+			} else {
+				timber_log->setSpeed(-DEFAULT_LOG_SPEED*_speed, 0, 0);
+				timber_log->setPosition(10, y, 0);
+			}
 		
-		_dynamic_objects.push_back(timber_log);
-		_timber_logs.push_back(timber_log);
+			_dynamic_objects.push_back(timber_log);
+			_timber_logs.push_back(timber_log);
 
 
-		Car* car = new Car();
-		y = rand() % 5 + 1;
-		y *= -1;
-		if (y % 2 == 0) {
-			car->setSpeed(DEFAULT_CAR_SPEED*_speed, 0, 0);
-			car->setPosition(-10, y, 1.1);
-		} else {
-			car->setSpeed(-DEFAULT_CAR_SPEED*_speed, 0, 0);
-			car->setPosition(10, y, 1.1);
-		}
+			Car* car = new Car();
+			y = rand() % 5 + 1;
+			y *= -1;
+			if (y % 2 == 0) {
+				car->setSpeed(DEFAULT_CAR_SPEED*_speed, 0, 0);
+				car->setPosition(-10, y, 1.1);
+			} else {
+				car->setSpeed(-DEFAULT_CAR_SPEED*_speed, 0, 0);
+				car->setPosition(10, y, 1.1);
+			}
 		
-		_dynamic_objects.push_back(car);
-		_cars.push_back(car);
+			_dynamic_objects.push_back(car);
+			_cars.push_back(car);
 
-	}
-
-	//aumentar a velocidade depois de um certo tempo
-	if (glutGet(GLUT_ELAPSED_TIME) > _speed_timer + 20000) {
-		_speed_timer = glutGet(GLUT_ELAPSED_TIME);
-		_speed += 1;
-	}
-
-	for (int i = 0; i < (int)_dynamic_objects.size(); i++)
-	{
-		DynamicObject* obj = _dynamic_objects[i];
-		obj->update(dt);
-		if (abs(obj->getPosition()->getX()) > 10) {
-			_dynamic_objects.erase(_dynamic_objects.begin() + i);
 		}
-	}
 
-	if (frog->collidesWith(river)) {
-		kill = true;
-		for (TimberLog* obj : _timber_logs) {
+		//aumentar a velocidade depois de um certo tempo
+		if (glutGet(GLUT_ELAPSED_TIME) > _speed_timer + 20000) {
+			_speed_timer = glutGet(GLUT_ELAPSED_TIME);
+			_speed += 1;
+		}
+
+		for (int i = 0; i < (int)_dynamic_objects.size(); i++)
+		{
+			DynamicObject* obj = _dynamic_objects[i];
+			obj->update(dt);
+			if (abs(obj->getPosition()->getX()) > 10) {
+				_dynamic_objects.erase(_dynamic_objects.begin() + i);
+			}
+		}
+
+		if (frog->collidesWith(river)) {
+			kill = true;
+			for (TimberLog* obj : _timber_logs) {
+				if (frog->collidesWith(obj)) {
+					frog->setLog(obj);
+
+					kill = false;
+					break;
+				}
+			}
+		} else {
+			frog->setLog(NULL);
+		}
+
+
+		for (Car* obj : _cars) {
 			if (frog->collidesWith(obj)) {
-				frog->setLog(obj);
-
-				kill = false;
+				kill = true;
 				break;
 			}
 		}
-	} else {
-		frog->setLog(NULL);
-	}
 
-
-	for (Car* obj : _cars) {
-		if (frog->collidesWith(obj)) {
-			kill = true;
-			break;
+		if (frog->collidesWith(river_side)) {
+			kill=true;
 		}
+
+		if (kill) {
+			if (_livesN == 1) {
+				gameOver();
+			}
+			die();
+			frog->kill();
+
+		}
+
+
+		frog->update(dt);
+
+		if (_current_camera == 2) {
+			_cameras[_current_camera]->setPosition(frog->getPosition()->getX(), frog->getPosition()->getY() - 3, 5);
+			_cameras[_current_camera]->setAt(frog->getPosition()->getX(), frog->getPosition()->getY() + 10, 0);
+		}
+
+		_game_lights->updateFrogLight(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ(), frog->getAngle());
+
 	}
-
-	if (kill) {
-		reset();
-		frog->kill();
-	}
-
-
-	if (frog->collidesWith(river_side)) {
-		frog->kill();
-		reset();
-	}
-
-	frog->update(dt);
-
-	if (_current_camera == 2) {
-		_cameras[_current_camera]->setPosition(frog->getPosition()->getX(), frog->getPosition()->getY() - 3, 5);
-		_cameras[_current_camera]->setAt(frog->getPosition()->getX(), frog->getPosition()->getY() + 10, 0);
-	}
-
 	_cameras[_current_camera]->update();
 
-	_game_lights->updateFrogLight(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ(), frog->getAngle());
 
 }
 
@@ -248,6 +273,18 @@ void GameManager::init() {
 
 	frog = new Frog();
 	//_dynamic_objects.push_back(frog;)
+
+	float x = -6;
+	for (int i = 0; i < _livesN; i++){
+		_lives.push_back(new Frog());
+		_lives[i]->setPosition(x, -7.f, 1.f);
+		_lives[i]->faceCamera();
+		x = x + 1;
+	}
+
+	/*for (int i = 0; i < _livesN; i++)  {
+		_lives.push_back(new Frog());
+	}*/
 
 	river = new River();
 	_static_objects.push_back(river);
@@ -283,9 +320,75 @@ void GameManager::init() {
 
 }
 
-void GameManager::reset() {
+void GameManager::gameOver() {
 	_speed = 1;
 	_dynamic_objects.clear();
 	_cars.clear();
 	_timber_logs.clear();
+	_livesN = 6;
+}
+
+void GameManager::die() {
+	_livesN--;
+}
+
+void GameManager::togglePause() {
+	if (_running) {
+		_running = false;
+	} else {
+		_running = true;
+	}
+
+}
+
+void GameManager::overlay(){
+
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	(*_cameras[0]).computeProjectionMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	(*_cameras[0]).computeVisualizationMatrix();
+
+	glPushMatrix();
+	glDisable(GL_CLIP_PLANE0);
+	glDisable(GL_CLIP_PLANE1);
+
+	
+	glPushMatrix();
+	glColor3f(0.f, 0.f, 0.f);
+
+	GLfloat amb[]={0,0,0,0};
+	GLfloat diff[]={0,0,0,0};
+	GLfloat spec[]={0,0,0,0};
+	GLfloat shine=0;
+
+	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+
+	glTranslatef(0, -7, 0.5);
+	glScalef(15, 1 , 1);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	int i = 0;
+	for (i; i < _livesN; i++){
+		glPushMatrix();
+		//glScalef(.4, .4, .4);
+		_lives[i]->draw();
+		glPopMatrix();
+	}
+
+	glEnable(GL_CLIP_PLANE0);
+	glEnable(GL_CLIP_PLANE1);
+	glPopMatrix();
+
+	//glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glutSwapBuffers();
 }

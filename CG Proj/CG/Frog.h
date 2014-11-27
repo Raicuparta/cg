@@ -7,6 +7,7 @@ class Frog :
 private:
 	TimberLog* _log;
 	float _angle;
+	bool _faceCamera;
 
 public:
 	Frog();
@@ -21,5 +22,6 @@ public:
 	void setLog(TimberLog* log);
 	void setAngle(float angle);
 	float getAngle();
+	void faceCamera();
 };
 

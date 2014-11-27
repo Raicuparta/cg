@@ -28,5 +28,8 @@ public:
 	void idle();
 	void update(double dt);
 	void init();
-	void reset();
+	void gameOver();
+	void overlay();
+	void die();
+	void togglePause();
 };

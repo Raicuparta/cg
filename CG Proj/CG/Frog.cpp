@@ -8,6 +8,7 @@ Frog::Frog() : DynamicObject() {
 	_width = 0.5;
 	_height = 0.3;
 	_angle = 0;
+	_faceCamera = false;
 }
 
 Frog::~Frog()
@@ -18,24 +19,33 @@ Frog::~Frog()
 void Frog::draw() {
 
 	glColor3f(63/255.f, 120/255.f, 79/255.f);
-
 	GLfloat amb[]={0.07f,0.66f,0.34f,1.0f};
 	GLfloat diff[]={0.17f,0.4f,0.2f,1.0f};
 	GLfloat spec[]={0.12f,0.16f,0.18f,1.0f};
 	GLfloat shine=0;
+
+	if(_faceCamera) {
+		diff[0] = 0; diff[1] = 0; diff[2] = 0; diff[3] = 0;
+		spec[0] = 0; spec[1] = 0; spec[2] = 0; spec[3] = 0;
+	}
+		
 	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
 	glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
 	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
 
-
-	
-
 	glPushMatrix();
 	glTranslatef(_position->getX(), _position->getY(), _position->getZ());
 	glScalef(0.1f, 0.1f, 0.1f);
 	glTranslatef(1, 1, 1);
-	glRotatef(_angle, 0, 0, 1);
+	if (!_faceCamera) {
+		glRotatef(_angle, 0, 0, 1);
+	} else {
+		glRotatef(-90, 1, 0, 0);
+		glRotatef(180, 0, 0, 1);
+		glScalef(0.7f, 0.7f, 0.7f);
+	}
+	
 
 		//corpo
 		glPushMatrix();
@@ -135,26 +145,26 @@ void Frog::draw() {
 		glutSolidCube(1);
 		glPopMatrix();
 
-
+		
 
 	glPopMatrix();
 
 }
 
 	void Frog::moveUp() {
-		setSpeed(getSpeed()->getX(), getSpeed()->getY() + SPEED, getSpeed()->getZ());
+		setSpeed(0, SPEED, getSpeed()->getZ());
 	}
 
 	void  Frog::moveDown() {
-		setSpeed(getSpeed()->getX(), getSpeed()->getY() - SPEED, getSpeed()->getZ());
+		setSpeed(0, -SPEED, getSpeed()->getZ());
 	}
 
 	void  Frog::moveLeft() {
-		setSpeed(getSpeed()->getX() - SPEED, getSpeed()->getY(), getSpeed()->getZ());
+		setSpeed(-SPEED, 0, getSpeed()->getZ());
 	}
 
 	void  Frog::moveRight() {
-		setSpeed(getSpeed()->getX() + SPEED, getSpeed()->getY(), getSpeed()->getZ());
+		setSpeed(+SPEED, 0, getSpeed()->getZ());
 	}
 
 	void Frog::kill() {
@@ -179,7 +189,7 @@ void Frog::draw() {
 			newPosition.set(getPosition()->getX(), newPosition.getY(), newPosition.getZ());
 		}
 
-		if (newPosition.getY() > 7 || newPosition.getY() < -7.1) {
+		if (newPosition.getY() > 7 || newPosition.getY() < -6.1) {
 
 			newPosition.set(newPosition.getX(), getPosition()->getY(), newPosition.getZ());
 		}
@@ -192,6 +202,10 @@ void Frog::draw() {
 
 	void Frog::setAngle(float angle) {
 		_angle = angle;
+	}
+
+	void Frog::faceCamera() {
+		_faceCamera = true;
 	}
 
 	float Frog::getAngle() {

@@ -38,9 +38,25 @@ void OrthogonalCamera::update() {
 }
 
 void OrthogonalCamera::computeProjectionMatrix() {
+		glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 
+	float ratio = (_right - _left) / (_top - _bottom);
+	float aspect = (float)glutGet(GLUT_WINDOW_WIDTH) / glutGet(GLUT_WINDOW_HEIGHT);
+
+	if (ratio < aspect)
+	{
+		float delta = ((_top - _bottom) * aspect - (_right - _left)) / 2;
+		glOrtho(_left - delta, _right + delta, _bottom, _top, _near, _far);
+	}
+	else
+	{
+		float delta = ((_right - _left) / aspect - (_top - _bottom)) / 2;
+		glOrtho(_left, _right, _bottom - delta, _top + delta, _near, _far);
+	}
 }
 
 void OrthogonalCamera::computeVisualizationMatrix() {
-
+		glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
