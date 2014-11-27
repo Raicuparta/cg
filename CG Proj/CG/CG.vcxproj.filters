@@ -169,10 +169,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="D:\FroggerCG\river.bmp">
+    <Image Include="roadAsphalt.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="roadTexture.bmp">
+    <Image Include="river.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="river2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

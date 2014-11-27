@@ -29,8 +29,6 @@ void Road::draw() {
 	//textura
 	glEnable(GL_TEXTURE_2D);
 
-	GLuint texture;
-
 	// allocate a texture name
 	/*glGenTextures( 1, &texture );
 
@@ -41,7 +39,7 @@ void Road::draw() {
 		glTranslatef(-7.5, -5.5, 0.5);
 		Draw::plane(25, 60, 15, 5);
 	glPopMatrix();*/
-
+	
 
 	glGenTextures(1, &_texture);
     glBindTexture(GL_TEXTURE_2D, _texture);
@@ -52,11 +50,10 @@ void Road::draw() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _bmpWidth, _bmpHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, _imageData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB , _bmpWidth, _bmpHeight, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, _imageData);
     
-
 	glPushMatrix();
-		glTranslatef(-7.5, 0.5, 0.2);
+		glTranslatef(-7.5, -5.5, 0.5);
 		Draw::texturedPlane(25, 60, 15, 5, _texture);
 	glPopMatrix();
 }

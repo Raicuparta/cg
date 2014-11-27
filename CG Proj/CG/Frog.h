@@ -19,6 +19,7 @@ public:
 	void kill();
 	void update(double dt);
 	void setLog(TimberLog* log);
-	void Frog::setAngle(float angle);
+	void setAngle(float angle);
+	float getAngle();
 };
 

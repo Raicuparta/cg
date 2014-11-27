@@ -235,7 +235,7 @@ void GameManager::update(double dt) {
 
 	_cameras[_current_camera]->update();
 
-	_game_lights->updateFrogLight(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ());
+	_game_lights->updateFrogLight(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ(), frog->getAngle());
 
 }
 

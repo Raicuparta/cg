@@ -102,12 +102,23 @@ void Lights::toggleAmbient() {
 	}
 }
 
-void Lights::updateFrogLight(float x, float y, float z) {
+void Lights::updateFrogLight(float x, float y, float z, float angle) {
 
 	float position[] = {x, y, z, 1};
 	glLightfv(GL_LIGHT7, GL_POSITION, position);
 
-	//glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, spot_direction);
+	GLfloat direction[] = { 0.0, 0.0, 0.0 };
+
+	if (angle == 0) {
+		direction[1] = 1.0;
+	} else if (angle == 90) {
+		direction[0] = -1.0;
+	} else if (angle == 180) {
+		direction[1] = -1.0;
+	} else if (angle == 270) {
+		direction[0] = 1.0;
+	}
+	glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, direction);
 
 }
 

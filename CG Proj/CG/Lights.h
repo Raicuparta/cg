@@ -12,7 +12,7 @@ public:
 	void toggleSpotlights();
 	void toggleLighting();
 	void toggleAmbient();
-	void updateFrogLight(float x, float y, float z);
+	void updateFrogLight(float x, float y, float z, float angle);
 	void toggleFrogLight();
 
 };

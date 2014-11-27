@@ -193,3 +193,7 @@ void Frog::draw() {
 	void Frog::setAngle(float angle) {
 		_angle = angle;
 	}
+
+	float Frog::getAngle() {
+		return _angle;
+	}
