@@ -5,8 +5,8 @@
 Frog::Frog() : DynamicObject() {
 	_position = new Vector3(0, -6, 1);
 	_speed = *(new Vector3(0, 0, 0));
-	_width = 0.5;
-	_height = 0.3;
+	_width = 1;
+	_height = 1;
 	_angle = 0;
 	_faceCamera = false;
 }

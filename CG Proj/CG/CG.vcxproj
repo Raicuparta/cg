@@ -129,6 +129,7 @@
     <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="gameover.bmp" />
     <Image Include="river.bmp" />
     <Image Include="river2.bmp" />
     <Image Include="roadAsphalt.bmp" />

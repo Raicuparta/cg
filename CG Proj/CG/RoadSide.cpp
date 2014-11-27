@@ -38,7 +38,7 @@ void RoadSide::draw() {
 	//Ao lado da estrada (Largura = 2)
 	glPushMatrix();
 		glTranslatef(-7.5, -7.5, 0.5);
-		Draw::plane(10, 60, 15, 2);
+		Draw::plane(20, 90, 15, 2);
 	glPopMatrix();
 
 }

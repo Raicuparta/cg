@@ -18,6 +18,9 @@ float _speed_timer = 0;
 int _speed = 1;
 int _livesN = 5;
 bool _running = true;
+bool _paused = false;
+bool _game_over = false;
+
 
 Lights* _game_lights;
 
@@ -26,6 +29,9 @@ Frog* frog;
 River* river;
 Limit* limit;
 RiverSide* river_side;
+
+GLuint _pause_texture;
+GLuint _end_texture;
 
 GameManager::GameManager() {
 	_current_time = 0;
@@ -51,9 +57,10 @@ void GameManager::display() {
 		obj->draw();
 	}
 
-	frog->draw();
+	if (!_game_over) {
+		frog->draw();
+	}
 	overlay();
-
 	glFlush();
 
 
@@ -141,7 +148,13 @@ void GameManager::keyReleased(unsigned char key, int x, int y) {
 	}
 
 	if (key == 's') {
-		togglePause();
+		if (!_game_over) {
+			togglePause();
+		}
+	} else if (key == 'r') {
+		if (_game_over) {
+				reset();
+		}
 	}
 	
 }
@@ -235,10 +248,6 @@ void GameManager::update(double dt) {
 			}
 		}
 
-		if (frog->collidesWith(river_side)) {
-			kill=true;
-		}
-
 		if (kill) {
 			if (_livesN == 1) {
 				gameOver();
@@ -316,16 +325,50 @@ void GameManager::init() {
 	_game_lights = new Lights();
 
 	_game_lights->toggleFrogLight();
-
+	glEnable(GL_TEXTURE_2D);	int bmpWidth, bmpHeight, bmpSize;
+	GLubyte * imageData;
+	
+	Draw::loadTexture("gameover.bmp", &bmpWidth, &bmpHeight, &bmpSize, (unsigned char**)&imageData);
+	glGenTextures(1, &_end_texture);
+	
+    glBindTexture(GL_TEXTURE_2D, _end_texture);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, bmpWidth, bmpHeight, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, imageData);	Draw::loadTexture("pause.bmp", &bmpWidth, &bmpHeight, &bmpSize, (unsigned char**)&imageData);
+	glGenTextures(1, &_pause_texture);
+	
+    glBindTexture(GL_TEXTURE_2D, _pause_texture);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, bmpWidth, bmpHeight, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, imageData);	glDisable(GL_TEXTURE_2D);
 
 }
 
 void GameManager::gameOver() {
+	_game_over = true;
+	_running = false;
+}
+
+void GameManager::reset() {
+	_livesN = 5;
+	_running = true;
 	_speed = 1;
 	_dynamic_objects.clear();
 	_cars.clear();
 	_timber_logs.clear();
-	_livesN = 6;
+	_game_over = false;
+	frog->setSpeed(0, 0, 0);
+	frog->setAngle(0);
 }
 
 void GameManager::die() {
@@ -334,9 +377,12 @@ void GameManager::die() {
 
 void GameManager::togglePause() {
 	if (_running) {
+		_paused = true;
 		_running = false;
 	} else {
+		_paused = false;
 		_running = true;
+		frog->setSpeed(0, 0, 0);
 	}
 
 }
@@ -354,19 +400,40 @@ void GameManager::overlay(){
 	glDisable(GL_CLIP_PLANE0);
 	glDisable(GL_CLIP_PLANE1);
 
-	
 	glPushMatrix();
-	glColor3f(0.f, 0.f, 0.f);
 
-	GLfloat amb[]={0,0,0,0};
-	GLfloat diff[]={0,0,0,0};
-	GLfloat spec[]={0,0,0,0};
+	//glColor3f(0.f, 0.f, 0.f);
+
+	glColor3f(1, 1, 1);
+	GLfloat um[]={1,1,1,1};
 	GLfloat shine=0;
 
-	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
-	glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
-	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,um);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,um);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,um);
 	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+
+
+	if (_game_over) {
+		glPushMatrix();
+		glTranslatef(-4, -4, 3);
+		Draw::texturedPlane(1, 1, 8, 8, _end_texture);
+		glPopMatrix();
+	}
+	if (_paused) {
+		glPushMatrix();
+		glTranslatef(-4, -4, 3);
+		Draw::texturedPlane(1, 1, 8, 8, _pause_texture);
+		glPopMatrix();
+	}
+	
+	
+	GLfloat zero[]={0,0,0,1};
+	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,zero);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,zero);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,zero);
+	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+	glColor3f(0.f, 0.f, 0.f);
 
 	glTranslatef(0, -7, 0.5);
 	glScalef(15, 1 , 1);

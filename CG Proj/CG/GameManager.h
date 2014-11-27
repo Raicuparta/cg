@@ -32,4 +32,5 @@ public:
 	void overlay();
 	void die();
 	void togglePause();
+	void reset();
 };

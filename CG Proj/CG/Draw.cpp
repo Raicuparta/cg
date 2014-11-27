@@ -40,21 +40,22 @@ void Draw::texturedPlane(int lines, int columns, float width, float height, GLui
 		for (int c = 0; c < columns; c++) {
 			glBegin(GL_QUADS);
 			glNormal3f(0, 0, 1);
+
 			glTexCoord2f(0.0f, 0.0f);
 			glVertex3f(c*quad_width , l*quad_height, 0);
-			glTexCoord2f(0.0f, 1.0f);
+
+			glTexCoord2f(1.0f, 0.0f);
 			glVertex3f((c+1)*quad_width , l*quad_height, 0);
+			
 			glTexCoord2f(1.0f, 1.0f);
 			glVertex3f((c+1)*quad_width , (l+1)*quad_height, 0);
-			glTexCoord2f(1.0f, 0.0f);
+			
+			glTexCoord2f(0.0f, 1.0f);
 			glVertex3f(c*quad_width , (l+1)*quad_height, 0);
 
 			glEnd();
 		}
 	}
-
-	
-
 	glDisable(GL_TEXTURE_2D);
 }
 

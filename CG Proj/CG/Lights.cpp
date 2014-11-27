@@ -28,7 +28,7 @@ Lights::Lights(){
 	GLfloat spot_diffuse[] = { 1, 1, 1, 1 };
 	GLfloat spot_specular[] = { 1, 1, 1, 1 };
 	GLfloat lin_att = 0.3;
-	GLfloat spot_exp = 20, spot_cutoff = 35; 
+	GLfloat spot_exp = 50, spot_cutoff = 35; 
 
 	GLfloat spot_positions[6][4] = {
 		{ -6, 7, 10, 1 },
@@ -53,7 +53,7 @@ Lights::Lights(){
 	}
 
 		//frog light
-		float directionFrogLight[] = {0, 1, 0};
+		float directionFrogLight[] = {0, 0, 0};
 
 		glLightf(GL_LIGHT7, GL_SPOT_CUTOFF, spot_cutoff);
 		glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, directionFrogLight);
@@ -107,7 +107,7 @@ void Lights::updateFrogLight(float x, float y, float z, float angle) {
 	float position[] = {x, y, z, 1};
 	glLightfv(GL_LIGHT7, GL_POSITION, position);
 
-	GLfloat direction[] = { 0.0, 0.0, 0.0 };
+	GLfloat direction[] = { 0.0, 0.0, -0.3 };
 
 	if (angle == 0) {
 		direction[1] = 1.0;

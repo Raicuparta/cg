@@ -39,7 +39,7 @@ void RiverSide::draw() {
 		//Altura RiverSide
 		glTranslatef(-7.5, 5.5, 0);
 		glRotatef(90, 1, 0, 0);
-		Draw::plane(5, 60, 15, 0.5);
+		Draw::plane(20, 90, 15, 0.5);
 	glPopMatrix();
 
 }
